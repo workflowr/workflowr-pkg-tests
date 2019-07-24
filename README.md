@@ -1,5 +1,7 @@
 # workflowr-pkg-tests
 
+[![CircleCI](https://circleci.com/gh/workflowr/workflowr-pkg-tests/tree/master.svg?style=svg)](https://circleci.com/gh/workflowr/workflowr-pkg-tests/tree/master)
+
 This repository contains additional tests of the R package [workflowr][].
 
 
