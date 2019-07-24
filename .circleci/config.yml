@@ -68,7 +68,7 @@ jobs:
             cd workflowr
             bash build.sh --no-manual
       - store_artifacts:
-          path: workflowr/workflowr-pkg-tests.Rcheck/
+          path: workflowr/workflowr.Rcheck/
       - save_cache:
           key: r-pkg-cache-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
