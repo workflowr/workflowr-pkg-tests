@@ -18,7 +18,10 @@ jobs:
             apt-get update
             apt-get install --yes --no-install-recommends \
               git \
-              pandoc
+              libgit2-dev \
+              pandoc \
+              pandoc-citeproc \
+              zlib1g-dev
       - run:
           name: Clone workflowr
           command: git clone https://github.com/jdblischak/workflowr.git
