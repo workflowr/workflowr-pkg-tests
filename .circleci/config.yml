@@ -19,6 +19,7 @@ jobs:
             apt-get install --yes --no-install-recommends \
               git \
               libgit2-dev \
+              libssl-dev \
               pandoc \
               pandoc-citeproc \
               zlib1g-dev
@@ -30,6 +31,7 @@ jobs:
           command: |
             mkdir -p ~/R/Library
             Rscript -e 'install.packages("remotes")'
+            Rscript -e 'remotes::install_github("r-lib/processx")'
             Rscript -e 'remotes::install_github("r-lib/callr")'
             Rscript -e 'remotes::install_github("r-lib/fs")'
             Rscript -e 'remotes::install_github("wrathematics/getPass")'
@@ -51,10 +53,11 @@ jobs:
             Rscript -e 'remotes::install_github("ropensci/spelling")'
             Rscript -e 'remotes::install_github("r-lib/testthat")'
             Rscript -e 'remotes::install_github("r-lib/withr")'
+            Rscript -e 'remotes::install_github("jdblischak/workflowr")'
       - run:
           name: Session information and installed package versions
           command: |
-            Rscript -e 'sessionInfo()'
+            Rscript -e 'library(workflowr); devtools::session_info()'
             Rscript -e 'installed.packages()[, c("Package", "Version")]'
             Rscript -e 'rmarkdown::pandoc_version()'
       - run:
