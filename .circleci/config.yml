@@ -23,6 +23,7 @@ jobs:
               libxml2-dev \
               pandoc \
               pandoc-citeproc \
+              qpdf \
               zlib1g-dev
       - run:
           name: Clone workflowr
