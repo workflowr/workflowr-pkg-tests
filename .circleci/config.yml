@@ -65,7 +65,7 @@ jobs:
           name: Build and check package
           command: |
             cd workflowr
-            bash build.sh
+            bash build.sh --no-manual
       - store_artifacts:
           path: workflowr/workflowr-pkg-tests.Rcheck/
       - save_cache:
