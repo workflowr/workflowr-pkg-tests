@@ -76,6 +76,18 @@ jobs:
 
 workflows:
   version: 2
-  all:
+  commit:
+    jobs:
+      - future
+  weekly:
+    triggers:
+      - schedule:
+          # "At 09:00 on Monday."
+          # https://crontab.guru/#0_09_*_*_1
+          cron: "0 09 * * 1"
+          filters:
+            branches:
+              only:
+                - master
     jobs:
       - future
