@@ -13,14 +13,15 @@ jobs:
             - r-pkg-cache-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
       - checkout
       - run:
-          name: Clone workflowr
-          command: git clone https://github.com/jdblischak/workflowr.git
-      - run:
           name: Install system dependencies
           command: |
             apt-get update
             apt-get install --yes --no-install-recommends \
+              git \
               pandoc
+      - run:
+          name: Clone workflowr
+          command: git clone https://github.com/jdblischak/workflowr.git
       - run:
           name: Install package dependencies from GitHub
           command: |
