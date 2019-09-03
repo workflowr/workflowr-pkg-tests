@@ -73,12 +73,45 @@ jobs:
           key: r-pkg-cache-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
+  callr_3.3.0:
+    docker:
+      - image: continuumio/miniconda3:4.7.10
+    environment:
+      NOT_CRAN: true
+    steps:
+      - checkout
+      - run:
+          name: Configure conda
+          command: |
+            conda config --set always_yes yes
+            conda config --set quiet yes
+            conda config --set changeps1 no
+            conda config --set auto_update_conda no
+      - run:
+          name: Install
+          command: conda install r-base r-callr==3.0.0 r-workflowr
+      - run:
+          name: Clone workflowr
+          command: git clone https://github.com/jdblischak/workflowr.git
+      - run:
+          name: Session information and installed package versions
+          command: |
+            Rscript -e 'library(workflowr); devtools::session_info()'
+            Rscript -e 'installed.packages()[, c("Package", "Version")]'
+            Rscript -e 'rmarkdown::pandoc_version()'
+      - run:
+          name: Build and check package
+          command: |
+            cd workflowr
+            bash build.sh --no-manual
+      - store_artifacts:
+          path: workflowr/workflowr.Rcheck/
 
 workflows:
   version: 2
   commit:
     jobs:
-      - future
+      - callr_3.3.0
   weekly:
     triggers:
       - schedule:
