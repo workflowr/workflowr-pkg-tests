@@ -87,6 +87,8 @@ jobs:
             conda config --set quiet yes
             conda config --set changeps1 no
             conda config --set auto_update_conda no
+            conda config --add channels defaults
+            conda config --add channels conda-forge
       - run:
           name: Install
           command: conda install r-base r-callr==3.0.0 r-workflowr
