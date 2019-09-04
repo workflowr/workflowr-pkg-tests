@@ -91,7 +91,15 @@ jobs:
             conda config --add channels conda-forge
       - run:
           name: Install
-          command: conda install r-base r-callr==3.0.0 r-workflowr
+          command: |
+            conda install r-base \
+                          r-callr==3.0.0 \
+                          r-clipr \
+                          r-devtools \
+                          r-spelling \
+                          r-testthat \
+                          r-withr \
+                          r-workflowr
       - run:
           name: Clone workflowr
           command: git clone https://github.com/jdblischak/workflowr.git
