@@ -95,12 +95,14 @@ jobs:
       - run:
           name: Install
           command: |
-            conda install r-base \
+            conda install qpdf \
+                          r-base \
                           r-callr==3.0.0 \
                           r-clipr \
                           r-covr \
                           r-devtools \
                           r-miniui \
+                          r-recommended \
                           r-shiny \
                           r-spelling \
                           r-testthat \
