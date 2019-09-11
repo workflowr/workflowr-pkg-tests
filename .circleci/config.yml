@@ -95,7 +95,10 @@ jobs:
             conda install r-base \
                           r-callr==3.0.0 \
                           r-clipr \
+                          r-covr \
                           r-devtools \
+                          r-miniui \
+                          r-shiny \
                           r-spelling \
                           r-testthat \
                           r-withr \
