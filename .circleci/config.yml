@@ -81,6 +81,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Unset CircleCI's forced conversion of HTTPS->SSH
+          command: git config --global --unset "url.ssh://git@github.com.insteadof"
+      - run:
           name: Configure conda
           command: |
             conda config --set always_yes yes
