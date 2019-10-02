@@ -27,9 +27,6 @@ jobs:
               qpdf \
               zlib1g-dev
       - run:
-          name: Clone workflowr
-          command: git clone https://github.com/jdblischak/workflowr.git
-      - run:
           name: Install package dependencies from GitHub
           command: |
             mkdir -p ~/R/Library
@@ -55,6 +52,12 @@ jobs:
             Rscript -e 'remotes::install_github("edwindj/whisker")'
             Rscript -e 'remotes::install_github("r-lib/withr")'
             Rscript -e 'remotes::install_github("viking/r-yaml")'
+      - run:
+          name: Clone and install workflowr
+          command: |
+            git clone https://github.com/jdblischak/workflowr.git ../workflowr
+            R CMD build --no-build-vignettes --no-manual ../workflowr
+            R CMD install workflowr_*tar.gz
       - run:
           name: Session information and installed package versions
           command: |
