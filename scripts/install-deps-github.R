@@ -16,6 +16,12 @@ deps_all <- unique(c(deps[[1]], unlist(deps_rec)))
 deps_list <- Map(function(x) tools::package_dependencies(x)[[1]], deps_all)
 deps_list["workflowr"] <- deps # Only workflowr should incldue suggested deps
 
+# Example of why I will need to parse the DESCRIPTION file in the dev repo
+# instead of relying on the potentially outdated CRAN metadata:
+# the dev version of sourcetools links to testthat
+# https://github.com/kevinushey/sourcetools/blob/master/DESCRIPTION#L15
+deps_list["sourcetools"] <- "testthat"
+
 list_to_df <- function(name, vec) {
   if (is.null(vec) || length(vec) == 0) return(NULL)
 
