@@ -20,7 +20,9 @@ deps_list["workflowr"] <- deps # Only workflowr should incldue suggested deps
 # instead of relying on the potentially outdated CRAN metadata:
 # the dev version of sourcetools links to testthat
 # https://github.com/kevinushey/sourcetools/blob/master/DESCRIPTION#L15
-deps_list["sourcetools"] <- "testthat"
+deps_list[["sourcetools"]] <- "testthat"
+# and cli
+deps_list[["cli"]] <- c(deps_list[["cli"]], c("fansi", "glue", "progress"))
 
 list_to_df <- function(name, vec) {
   if (is.null(vec) || length(vec) == 0) return(NULL)
@@ -60,7 +62,7 @@ for (pkg in deps_sort) {
   if (pkg == "roxygen2") gh_repo <- "r-lib/roxygen2"
   if (pkg == "yaml") gh_repo <- "viking/r-yaml"
   if (length(gh_repo) == 1) {
-    cat(sprintf("==== Installing %s from GitHub ===='\n", gh_repo))
+    cat(sprintf("==== Installing %s from GitHub ====\n", gh_repo))
     if (!dry_run) remotes::install_github(gh_repo, dependencies = FALSE)
   } else {
     cran <- c(cran, pkg)
