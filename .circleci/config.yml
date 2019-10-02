@@ -67,7 +67,7 @@ jobs:
       - run:
           name: Build and check package
           command: |
-            cd workflowr
+            cd ../workflowr
             bash build.sh --no-manual
       - store_artifacts:
           path: workflowr/workflowr.Rcheck/
@@ -132,7 +132,7 @@ workflows:
   version: 2
   commit:
     jobs:
-      - callr_3.3.0
+#      - callr_3.3.0
       - future
   weekly:
     triggers:
