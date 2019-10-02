@@ -57,7 +57,7 @@ jobs:
           command: |
             git clone https://github.com/jdblischak/workflowr.git ../workflowr
             R CMD build --no-build-vignettes --no-manual ../workflowr
-            R CMD install workflowr_*tar.gz
+            R CMD INSTALL workflowr_*tar.gz ~/R/Library
       - run:
           name: Session information and installed package versions
           command: |
