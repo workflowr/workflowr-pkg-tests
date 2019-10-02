@@ -76,7 +76,7 @@ jobs:
           command: |
             conda install qpdf \
                           r-base \
-                          r-callr==3.0.0 \
+                          r-callr==3.3.0 \
                           r-clipr \
                           r-covr \
                           r-devtools \
@@ -86,15 +86,10 @@ jobs:
                           r-spelling \
                           r-testthat \
                           r-withr \
-                          r-workflowr \
-                          unzip \
-                          wget
+                          r-workflowr
       - run:
-          name: Download workflowr
-          command: |
-            wget -O workflowr.zip https://github.com/jdblischak/workflowr/archive/master.zip
-            unzip workflowr.zip
-            mv workflowr-master workflowr
+          name: Clone workflowr
+          command: git clone https://github.com/jdblischak/workflowr.git ../workflowr
       - run:
           name: Session information and installed package versions
           command: |
@@ -104,7 +99,7 @@ jobs:
       - run:
           name: Build and check package
           command: |
-            cd workflowr
+            cd ../workflowr
             bash build.sh --no-manual
       - store_artifacts:
           path: workflowr/workflowr.Rcheck/
