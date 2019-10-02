@@ -33,8 +33,28 @@ jobs:
           name: Install package dependencies from GitHub
           command: |
             mkdir -p ~/R/Library
-            Rscript -e 'install.packages(c("igraph", "remotes", "stringr"))'
-            Rscript scripts/install-deps-github.R
+            Rscript -e 'install.packages("remotes")'
+            Rscript -e 'remotes::install_github("r-lib/callr")'
+            Rscript -e 'remotes::install_github("mdlincoln/clipr")'
+            Rscript -e 'remotes::install_github("r-lib/covr")'
+            Rscript -e 'remotes::install_github("r-lib/devtools")'
+            Rscript -e 'remotes::install_github("r-lib/fs")'
+            Rscript -e 'remotes::install_github("wrathematics/getPass")'
+            Rscript -e 'remotes::install_github("ropensci/git2r")'
+            Rscript -e 'remotes::install_github("tidyverse/glue")'
+            Rscript -e 'remotes::install_github("r-lib/httr")'
+            Rscript -e 'remotes::install_github("yihui/knitr")'
+            Rscript -e 'remotes::install_github("rstudio/miniUI")'
+            Rscript -e 'remotes::install_github("rstudio/rmarkdown")'
+            Rscript -e 'remotes::install_github("krlmlr/rprojroot")'
+            Rscript -e 'remotes::install_github("rstudio/rstudioapi")'
+            Rscript -e 'remotes::install_github("rstudio/shiny")'
+            Rscript -e 'remotes::install_github("ropensci/spelling")'
+            Rscript -e 'remotes::install_github("tidyverse/stringr")'
+            Rscript -e 'remotes::install_github("r-lib/testthat")'
+            Rscript -e 'remotes::install_github("edwindj/whisker")'
+            Rscript -e 'remotes::install_github("r-lib/withr")'
+            Rscript -e 'remotes::install_github("viking/r-yaml")'
       - run:
           name: Session information and installed package versions
           command: |
