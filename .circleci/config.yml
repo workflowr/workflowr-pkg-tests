@@ -95,9 +95,8 @@ jobs:
       - run:
           name: Session information and installed package versions
           command: |
-            Rscript -e 'library(workflowr); devtools::session_info()'
-            Rscript -e 'installed.packages()[, c("Package", "Version")]'
-            Rscript -e 'rmarkdown::pandoc_version()'
+            Rscript -e 'devtools::session_info()'
+            conda list
       - run:
           name: Build and check package
           command: |
