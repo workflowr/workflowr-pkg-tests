@@ -23,6 +23,8 @@ deps_list["workflowr"] <- deps # Only workflowr should incldue suggested deps
 deps_list[["sourcetools"]] <- "testthat"
 # and cli
 deps_list[["cli"]] <- c(deps_list[["cli"]], c("fansi", "glue", "progress"))
+# and progress needs to be added since it wasn't even there before cli
+deps_list[["progress"]] <- tools::package_dependencies("progress")[[1]]
 
 list_to_df <- function(name, vec) {
   if (is.null(vec) || length(vec) == 0) return(NULL)
