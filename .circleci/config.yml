@@ -127,13 +127,196 @@ jobs:
             bash build.sh --no-manual
       - store_artifacts:
           path: workflowr/workflowr.Rcheck/
-
+  r361:
+    environment:
+      NOT_CRAN: true
+      PANDOC: 2.7
+      R_LIBS: ~/R/Library
+    docker:
+      - image: rocker/r-ver:3.6.1
+    steps:
+      - restore_cache:
+          keys:
+            - r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
+      - checkout
+      - run:
+          name: Install system dependencies
+          command: bash .circleci/install-system.sh
+      - run:
+          name: Install pandoc
+          command: bash .circleci/install-pandoc.sh $PANDOC
+      - run:
+          name: Install package dependencies
+          command: r .circleci/install-r-pkgs.R
+      - run:
+          name: Session information and installed package versions
+          command: r -p .circleci/session-info.R
+      - run:
+          name: Build and check
+          command: bash .circleci/check.sh
+      - store_artifacts:
+          path: workflowr.Rcheck/
+      - save_cache:
+          key: r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+          paths:
+            - "~/R/Library"
+  devel:
+    environment:
+      NOT_CRAN: true
+      PANDOC: 2.7
+      R_LIBS: ~/R/Library
+    docker:
+      - image: rocker/r-ver:devel
+    steps:
+      - restore_cache:
+          keys:
+            - r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
+      - checkout
+      - run:
+          name: Install system dependencies
+          command: bash .circleci/install-system.sh
+      - run:
+          name: Install pandoc
+          command: bash .circleci/install-pandoc.sh $PANDOC
+      - run:
+          name: Install package dependencies
+          command: r .circleci/install-r-pkgs.R
+      - run:
+          name: Session information and installed package versions
+          command: r -p .circleci/session-info.R
+      - run:
+          name: Build and check
+          command: bash .circleci/check.sh
+      - store_artifacts:
+          path: workflowr.Rcheck/
+      - save_cache:
+          key: r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+          paths:
+            - "~/R/Library"
+  r353:
+    environment:
+      NOT_CRAN: true
+      PANDOC: 2.7
+      R_LIBS: ~/R/Library
+    docker:
+      - image: rocker/r-ver:3.5.3
+    steps:
+      - restore_cache:
+          keys:
+            - r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
+      - checkout
+      - run:
+          name: Install system dependencies
+          command: bash .circleci/install-system.sh
+      - run:
+          name: Install pandoc
+          command: bash .circleci/install-pandoc.sh $PANDOC
+      - run:
+          name: Install package dependencies
+          command: r .circleci/install-r-pkgs.R
+      # Hot fix required b/c getOption("repos") is set to https://mran.microsoft.com/snapshot/2019-04-26
+      - run:
+          name: Install latest version of git2r
+          command: r -e 'install.packages("git2r", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
+      - run:
+          name: Session information and installed package versions
+          command: r -p .circleci/session-info.R
+      - run:
+          name: Build and check
+          command: bash .circleci/check.sh
+      - store_artifacts:
+          path: workflowr.Rcheck/
+      - save_cache:
+          key: r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+          paths:
+            - "~/R/Library"
+  pandoc_one:
+    environment:
+      NOT_CRAN: true
+      PANDOC: 1.19
+      R_LIBS: ~/R/Library
+    docker:
+      - image: rocker/r-base:latest
+    steps:
+      - restore_cache:
+          keys:
+            - r-pkg-cache-v1-latest-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v1-latest-{{ arch }}-
+      - checkout
+      - run:
+          name: Install system dependencies
+          command: bash .circleci/install-system.sh
+      - run:
+          name: Install pandoc
+          command: bash .circleci/install-pandoc.sh $PANDOC
+      - run:
+          name: Install package dependencies
+          command: r .circleci/install-r-pkgs.R
+      - run:
+          name: Session information and installed package versions
+          command: r -p .circleci/session-info.R
+      - run:
+          name: Build and check
+          command: bash .circleci/check.sh
+      - store_artifacts:
+          path: workflowr.Rcheck/
+      - save_cache:
+          key: r-pkg-cache-v1-latest-{{ arch }}-{{ .Branch }}
+          paths:
+            - "~/R/Library"
+  rmd_1.7:
+    environment:
+      NOT_CRAN: true
+      PANDOC: 2.7
+      R_LIBS: ~/R/Library
+    docker:
+      - image: rocker/r-base:latest
+    steps:
+      - restore_cache:
+          keys:
+            - r-pkg-cache-v1-latest-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v1-latest-{{ arch }}-
+      - checkout
+      - run:
+          name: Install system dependencies
+          command: bash .circleci/install-system.sh
+      - run:
+          name: Install pandoc
+          command: bash .circleci/install-pandoc.sh $PANDOC
+      - run:
+          name: Install package dependencies
+          command: r .circleci/install-r-pkgs.R
+      - run:
+          name: Install knitr 1.18 and rmarkdown 1.7
+          # For some reason install_version() was failing with https://cloud.r-project.org
+          # but it works with https://cran.r-project.org
+          command: |
+            r -e 'remotes::install_version("knitr", "1.18", upgrade = FALSE, repos = "https://cran.r-project.org")'
+            r -e 'remotes::install_version("rmarkdown", "1.7", upgrade = FALSE, repos = "https://cran.r-project.org")'
+      - run:
+          name: Session information and installed package versions
+          command: r -p .circleci/session-info.R
+      - run:
+          name: Build and check
+          command: bash .circleci/check.sh
+      - store_artifacts:
+          path: workflowr.Rcheck/
+      - save_cache:
+          key: r-pkg-cache-v1-latest-{{ arch }}-{{ .Branch }}
+          paths:
+            - "~/R/Library"
 workflows:
   version: 2
   commit:
     jobs:
-      - callr_3.3.0
-      - future
+      - devel
+      - r361
+      - r353
+      - pandoc_one
+      - rmd_1.7
   weekly:
     triggers:
       - schedule:
@@ -146,3 +329,4 @@ workflows:
                 - master
     jobs:
       - future
+      - callr_3.3.0
