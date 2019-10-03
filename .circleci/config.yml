@@ -132,7 +132,7 @@ workflows:
   version: 2
   commit:
     jobs:
-#      - callr_3.3.0
+      - callr_3.3.0
       - future
   weekly:
     triggers:
