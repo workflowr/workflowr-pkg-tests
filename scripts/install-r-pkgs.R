@@ -5,4 +5,4 @@ if (!requireNamespace("remotes", quietly = TRUE))
   install.packages("remotes")
 
 cat("Installing outdated dependencies\n")
-remotes::install_deps(dependencies = TRUE)
+remotes::install_deps(pkgdir = "/tmp/workflowr", dependencies = TRUE)

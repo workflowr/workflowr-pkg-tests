@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eux
 
+cd /tmp/workflowr
+
 echo "Building package"
 R CMD build .
 

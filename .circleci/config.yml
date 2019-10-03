@@ -142,19 +142,22 @@ jobs:
       - checkout
       - run:
           name: Install system dependencies
-          command: bash .circleci/install-system.sh
+          command: bash scripts/install-system.sh
       - run:
           name: Install pandoc
-          command: bash .circleci/install-pandoc.sh $PANDOC
+          command: bash scripts/install-pandoc.sh $PANDOC
+      - run:
+          name: Clone workflowr
+          command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr
       - run:
           name: Install package dependencies
-          command: r .circleci/install-r-pkgs.R
+          command: r scripts/install-r-pkgs.R
       - run:
           name: Session information and installed package versions
-          command: r -p .circleci/session-info.R
+          command: r -p scripts/session-info.R
       - run:
           name: Build and check
-          command: bash .circleci/check.sh
+          command: bash scripts/check.sh
       - store_artifacts:
           path: workflowr.Rcheck/
       - save_cache:
@@ -176,19 +179,22 @@ jobs:
       - checkout
       - run:
           name: Install system dependencies
-          command: bash .circleci/install-system.sh
+          command: bash scripts/install-system.sh
       - run:
           name: Install pandoc
-          command: bash .circleci/install-pandoc.sh $PANDOC
+          command: bash scripts/install-pandoc.sh $PANDOC
+      - run:
+          name: Clone workflowr
+          command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr
       - run:
           name: Install package dependencies
-          command: r .circleci/install-r-pkgs.R
+          command: r scripts/install-r-pkgs.R
       - run:
           name: Session information and installed package versions
-          command: r -p .circleci/session-info.R
+          command: r -p scripts/session-info.R
       - run:
           name: Build and check
-          command: bash .circleci/check.sh
+          command: bash scripts/check.sh
       - store_artifacts:
           path: workflowr.Rcheck/
       - save_cache:
@@ -210,23 +216,26 @@ jobs:
       - checkout
       - run:
           name: Install system dependencies
-          command: bash .circleci/install-system.sh
+          command: bash scripts/install-system.sh
       - run:
           name: Install pandoc
-          command: bash .circleci/install-pandoc.sh $PANDOC
+          command: bash scripts/install-pandoc.sh $PANDOC
+      - run:
+          name: Clone workflowr
+          command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr
       - run:
           name: Install package dependencies
-          command: r .circleci/install-r-pkgs.R
+          command: r scripts/install-r-pkgs.R
       # Hot fix required b/c getOption("repos") is set to https://mran.microsoft.com/snapshot/2019-04-26
       - run:
           name: Install latest version of git2r
           command: r -e 'install.packages("git2r", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
       - run:
           name: Session information and installed package versions
-          command: r -p .circleci/session-info.R
+          command: r -p scripts/session-info.R
       - run:
           name: Build and check
-          command: bash .circleci/check.sh
+          command: bash scripts/check.sh
       - store_artifacts:
           path: workflowr.Rcheck/
       - save_cache:
@@ -248,19 +257,22 @@ jobs:
       - checkout
       - run:
           name: Install system dependencies
-          command: bash .circleci/install-system.sh
+          command: bash scripts/install-system.sh
       - run:
           name: Install pandoc
-          command: bash .circleci/install-pandoc.sh $PANDOC
+          command: bash scripts/install-pandoc.sh $PANDOC
+      - run:
+          name: Clone workflowr
+          command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr
       - run:
           name: Install package dependencies
-          command: r .circleci/install-r-pkgs.R
+          command: r scripts/install-r-pkgs.R
       - run:
           name: Session information and installed package versions
-          command: r -p .circleci/session-info.R
+          command: r -p scripts/session-info.R
       - run:
           name: Build and check
-          command: bash .circleci/check.sh
+          command: bash scripts/check.sh
       - store_artifacts:
           path: workflowr.Rcheck/
       - save_cache:
@@ -282,13 +294,16 @@ jobs:
       - checkout
       - run:
           name: Install system dependencies
-          command: bash .circleci/install-system.sh
+          command: bash scripts/install-system.sh
       - run:
           name: Install pandoc
-          command: bash .circleci/install-pandoc.sh $PANDOC
+          command: bash scripts/install-pandoc.sh $PANDOC
+      - run:
+          name: Clone workflowr
+          command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr
       - run:
           name: Install package dependencies
-          command: r .circleci/install-r-pkgs.R
+          command: r scripts/install-r-pkgs.R
       - run:
           name: Install knitr 1.18 and rmarkdown 1.7
           # For some reason install_version() was failing with https://cloud.r-project.org
@@ -298,10 +313,10 @@ jobs:
             r -e 'remotes::install_version("rmarkdown", "1.7", upgrade = FALSE, repos = "https://cran.r-project.org")'
       - run:
           name: Session information and installed package versions
-          command: r -p .circleci/session-info.R
+          command: r -p scripts/session-info.R
       - run:
           name: Build and check
-          command: bash .circleci/check.sh
+          command: bash scripts/check.sh
       - store_artifacts:
           path: workflowr.Rcheck/
       - save_cache:
