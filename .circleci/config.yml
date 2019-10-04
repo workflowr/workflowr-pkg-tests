@@ -70,7 +70,7 @@ jobs:
             cd ../workflowr
             bash build.sh --no-manual
       - store_artifacts:
-          path: workflowr/workflowr.Rcheck/
+          path: ../workflowr/workflowr.Rcheck/
       - save_cache:
           key: r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
@@ -107,7 +107,7 @@ jobs:
           name: Build and check
           command: bash scripts/check.sh
       - store_artifacts:
-          path: workflowr.Rcheck/
+          path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
           key: r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
@@ -144,7 +144,7 @@ jobs:
           name: Build and check
           command: bash scripts/check.sh
       - store_artifacts:
-          path: workflowr.Rcheck/
+          path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
           key: r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
@@ -185,7 +185,7 @@ jobs:
           name: Build and check
           command: bash scripts/check.sh
       - store_artifacts:
-          path: workflowr.Rcheck/
+          path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
           key: r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
@@ -222,7 +222,7 @@ jobs:
           name: Build and check
           command: bash scripts/check.sh
       - store_artifacts:
-          path: workflowr.Rcheck/
+          path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
           key: r-pkg-cache-v1-latest-{{ arch }}-{{ .Branch }}
           paths:
@@ -266,7 +266,7 @@ jobs:
           name: Build and check
           command: bash scripts/check.sh
       - store_artifacts:
-          path: workflowr.Rcheck/
+          path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
           key: r-pkg-cache-v1-latest-{{ arch }}-{{ .Branch }}
           paths:
@@ -322,11 +322,12 @@ jobs:
             cd ../workflowr
             bash build.sh --no-manual
       - store_artifacts:
-          path: workflowr/workflowr.Rcheck/
+          path: ../workflowr/workflowr.Rcheck/
 workflows:
   version: 2
   commit:
     jobs:
+      - pandoc_one
   weekly:
     triggers:
       - schedule:
