@@ -75,65 +75,13 @@ jobs:
           key: r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
-  callr_3.3.0:
-    docker:
-      - image: continuumio/miniconda3:4.7.10
-    environment:
-      NOT_CRAN: true
-    steps:
-      - checkout
-      - run:
-          name: Unset CircleCI's forced conversion of HTTPS->SSH
-          command: git config --global --unset "url.ssh://git@github.com.insteadof"
-      - run:
-          name: Configure conda
-          command: |
-            conda config --set always_yes yes
-            conda config --set quiet yes
-            conda config --set changeps1 no
-            conda config --set auto_update_conda no
-            conda config --add channels defaults
-            conda config --add channels conda-forge
-      - run:
-          name: Install
-          command: |
-            conda update --all
-            conda config --env --add pinned_packages conda-forge::r-callr=3.3.0
-            conda install qpdf \
-                          r-base \
-                          r-callr==3.3.0 \
-                          r-clipr \
-                          r-covr \
-                          r-devtools \
-                          r-miniui \
-                          r-recommended \
-                          r-shiny \
-                          r-spelling \
-                          r-testthat \
-                          r-withr \
-                          r-workflowr
-      - run:
-          name: Clone workflowr
-          command: git clone https://github.com/jdblischak/workflowr.git ../workflowr
-      - run:
-          name: Session information and installed package versions
-          command: |
-            Rscript -e 'devtools::session_info()'
-            conda list
-      - run:
-          name: Build and check package
-          command: |
-            cd ../workflowr
-            bash build.sh --no-manual
-      - store_artifacts:
-          path: workflowr/workflowr.Rcheck/
-  r361:
+  devel:
     environment:
       NOT_CRAN: true
       PANDOC: 2.7
       R_LIBS: ~/R/Library
     docker:
-      - image: rocker/r-ver:3.6.1
+      - image: rocker/r-ver:devel
     steps:
       - restore_cache:
           keys:
@@ -164,13 +112,13 @@ jobs:
           key: r-pkg-cache-v1-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
-  devel:
+  r361:
     environment:
       NOT_CRAN: true
       PANDOC: 2.7
       R_LIBS: ~/R/Library
     docker:
-      - image: rocker/r-ver:devel
+      - image: rocker/r-ver:3.6.1
     steps:
       - restore_cache:
           keys:
@@ -323,15 +271,62 @@ jobs:
           key: r-pkg-cache-v1-latest-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
+  callr_3.3.0:
+    docker:
+      - image: continuumio/miniconda3:4.7.10
+    environment:
+      NOT_CRAN: true
+    steps:
+      - checkout
+      - run:
+          name: Unset CircleCI's forced conversion of HTTPS->SSH
+          command: git config --global --unset "url.ssh://git@github.com.insteadof"
+      - run:
+          name: Configure conda
+          command: |
+            conda config --set always_yes yes
+            conda config --set quiet yes
+            conda config --set changeps1 no
+            conda config --set auto_update_conda no
+            conda config --add channels defaults
+            conda config --add channels conda-forge
+      - run:
+          name: Install
+          command: |
+            conda update --all
+            conda config --env --add pinned_packages conda-forge::r-callr=3.3.0
+            conda install qpdf \
+                          r-base \
+                          r-callr==3.3.0 \
+                          r-clipr \
+                          r-covr \
+                          r-devtools \
+                          r-miniui \
+                          r-recommended \
+                          r-shiny \
+                          r-spelling \
+                          r-testthat \
+                          r-withr \
+                          r-workflowr
+      - run:
+          name: Clone workflowr
+          command: git clone https://github.com/jdblischak/workflowr.git ../workflowr
+      - run:
+          name: Session information and installed package versions
+          command: |
+            Rscript -e 'devtools::session_info()'
+            conda list
+      - run:
+          name: Build and check package
+          command: |
+            cd ../workflowr
+            bash build.sh --no-manual
+      - store_artifacts:
+          path: workflowr/workflowr.Rcheck/
 workflows:
   version: 2
   commit:
     jobs:
-      - devel
-      - r361
-      - r353
-      - pandoc_one
-      - rmd_1.7
   weekly:
     triggers:
       - schedule:
@@ -344,4 +339,9 @@ workflows:
                 - master
     jobs:
       - future
+      - devel
+      - r361
+      - r353
+      - pandoc_one
+      - rmd_1.7
       - callr_3.3.0
