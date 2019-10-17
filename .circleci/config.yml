@@ -222,7 +222,7 @@ jobs:
           name: Install package dependencies (not in old MRAN snapshot, or too outdated)
           command: |
             mkdir -p ~/R/Library
-            r -e 'install.packages(c("callr", "fs", "glue", "spelling", "withr"), repos = "https://cran.rstudio.com/")'
+            r -e 'install.packages(c("callr", "fs", "glue", "spelling", "testthat", "withr"), repos = "https://cran.rstudio.com/")'
       - run:
           name: Install package dependencies
           command: |
