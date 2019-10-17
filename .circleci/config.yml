@@ -222,7 +222,7 @@ jobs:
           name: Install package dependencies (not in old MRAN snapshot, or too outdated)
           command: |
             mkdir -p ~/R/Library
-            r -e 'install.packages(c("callr", "fs", "glue", "spelling", "testthat", "withr"), repos = "https://cran.rstudio.com/")'
+            r -e 'install.packages(c("callr", "fs", "glue", "spelling", "stringr", "testthat", "withr"), repos = "https://cran.rstudio.com/")'
       - run:
           name: Install package dependencies
           command: |
@@ -240,9 +240,9 @@ jobs:
       - run:
           name: Session information and installed package versions
           command: r -p scripts/session-info.R
-      - run:
-          name: Build and check
-          command: bash scripts/check.sh
+#      - run:
+#          name: Build and check
+#          command: bash scripts/check.sh
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
