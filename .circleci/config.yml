@@ -360,6 +360,9 @@ jobs:
             mkdir -p ~/R/Library
             r scripts/install-r-pkgs.R
       - run:
+          name: Install workflowr
+          command: R CMD INSTALL --build /tmp/workflowr
+      - run:
           name: Record speed of wflow_publish() for dev version
           command: r -p scripts/speed-test.R
       - run:
