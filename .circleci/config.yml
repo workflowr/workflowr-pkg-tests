@@ -233,6 +233,11 @@ jobs:
           name: Install latest version of git2r
           command: r -e 'install.packages("git2r", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
       - run:
+          name: Install rmarkdown 1.7 and knitr 1.18
+          command: |
+            r -e 'remotes::install_version("rmarkdown", "1.7", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
+            r -e 'remotes::install_version("knitr", "1.18", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
+      - run:
           name: Session information and installed package versions
           command: r -p scripts/session-info.R
       - run:
