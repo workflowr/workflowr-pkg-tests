@@ -333,11 +333,51 @@ jobs:
             bash build.sh --no-manual
       - store_artifacts:
           path: ../workflowr/workflowr.Rcheck/
+  speed:
+    environment:
+      PANDOC: 2.7
+      R_LIBS: ~/R/Library
+    docker:
+      - image: rocker/r-ver:3.6.1
+    steps:
+      - restore_cache:
+          keys:
+            - r-pkg-cache-v2-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v2-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
+      - checkout
+      - run:
+          name: Install system dependencies
+          command: bash scripts/install-system.sh
+      - run:
+          name: Install pandoc
+          command: bash scripts/install-pandoc.sh $PANDOC
+      - run:
+          name: Clone workflowr
+          command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr
+      - run:
+          name: Install package dependencies
+          command: |
+            mkdir -p ~/R/Library
+            r scripts/install-r-pkgs.R
+      - run:
+          name: Record speed of wflow_publish() for dev version
+          command: r -p scripts/speed-test.R
+      - run:
+          name: Record speed of wflow_publish() for version 1.4.0
+          command: |
+            r -e 'remotes::install_version("workflowr", "1.4.0")'
+            r -p scripts/speed-test.R
+      - save_cache:
+          key: r-pkg-cache-v2-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+          paths:
+            - "~/R/Library"
+
 workflows:
   version: 2
   commit:
     jobs:
       - pandoc_one
+      - speed
   weekly:
     triggers:
       - schedule:
