@@ -364,12 +364,12 @@ jobs:
           command: R CMD INSTALL --build /tmp/workflowr
       - run:
           name: Record speed of wflow_publish() for dev version
-          command: r -p scripts/speed-test.R
+          command: Rscript scripts/speed-test.R
       - run:
           name: Record speed of wflow_publish() for version 1.4.0
           command: |
             r -e 'remotes::install_version("workflowr", "1.4.0")'
-            r -p scripts/speed-test.R
+            Rscript scripts/speed-test.R
       - save_cache:
           key: r-pkg-cache-v2-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
