@@ -219,10 +219,10 @@ jobs:
           name: Clone workflowr
           command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr
       - run:
-          name: Install package dependencies (not in old MRAN snapshot)
+          name: Install package dependencies (not in old MRAN snapshot, or too outdated)
           command: |
             mkdir -p ~/R/Library
-            r -e 'install.packages(c("callr", "fs", "glue", "spelling"), repos = "https://cran.rstudio.com/")'
+            r -e 'install.packages(c("callr", "fs", "glue", "spelling", "withr"), repos = "https://cran.rstudio.com/")'
       - run:
           name: Install package dependencies
           command: |
