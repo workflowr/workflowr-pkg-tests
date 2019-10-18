@@ -432,9 +432,7 @@ workflows:
   version: 2
   commit:
     jobs:
-#      - pandoc_one
       - speed
-      - r325
   weekly:
     triggers:
       - schedule:
@@ -450,6 +448,8 @@ workflows:
       - devel
       - r361
       - r353
+      - r325
       - pandoc_one
       - rmd_1.7
       - callr_3.3.0
+      - speed
