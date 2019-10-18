@@ -222,7 +222,7 @@ jobs:
           name: Install package dependencies (not in old MRAN snapshot, or too outdated)
           command: |
             mkdir -p ~/R/Library
-            Rscript -e 'install.packages(c("callr", "clipr", "fs", "glue", "spelling", "stringr", "testthat", "withr"), repos = "https://cran.rstudio.com/")'
+            Rscript -e 'install.packages(c("callr", "clipr", "fs", "glue", "rstudioapi", "shiny", "spelling", "stringr", "testthat", "withr"), repos = "https://cran.rstudio.com/")'
       - run:
           name: Install package dependencies
           command: |
