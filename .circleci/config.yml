@@ -101,10 +101,10 @@ jobs:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
-            r scripts/install-r-pkgs.R
+            Rscript scripts/install-r-pkgs.R
       - run:
           name: Session information and installed package versions
-          command: r -p scripts/session-info.R
+          command: Rscript scripts/session-info.R
       - run:
           name: Build and check
           command: bash scripts/check.sh
@@ -140,10 +140,10 @@ jobs:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
-            r scripts/install-r-pkgs.R
+            Rscript scripts/install-r-pkgs.R
       - run:
           name: Session information and installed package versions
-          command: r -p scripts/session-info.R
+          command: Rscript scripts/session-info.R
       - run:
           name: Build and check
           command: bash scripts/check.sh
@@ -179,14 +179,14 @@ jobs:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
-            r scripts/install-r-pkgs.R
+            Rscript scripts/install-r-pkgs.R
       # Hot fix required b/c getOption("repos") is set to https://mran.microsoft.com/snapshot/2019-04-26
       - run:
           name: Install latest version of git2r
-          command: r -e 'install.packages("git2r", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
+          command: Rscript -e 'install.packages("git2r", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
       - run:
           name: Session information and installed package versions
-          command: r -p scripts/session-info.R
+          command: Rscript scripts/session-info.R
       - run:
           name: Build and check
           command: bash scripts/check.sh
@@ -222,24 +222,24 @@ jobs:
           name: Install package dependencies (not in old MRAN snapshot, or too outdated)
           command: |
             mkdir -p ~/R/Library
-            r -e 'install.packages(c("callr", "fs", "glue", "spelling", "stringr", "testthat", "withr"), repos = "https://cran.rstudio.com/")'
+            Rscript -e 'install.packages(c("callr", "fs", "glue", "spelling", "stringr", "testthat", "withr"), repos = "https://cran.rstudio.com/")'
       - run:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
-            r scripts/install-r-pkgs.R
+            Rscript scripts/install-r-pkgs.R
       # Hot fix required b/c getOption("repos") is set to older MRAN mirror
       - run:
           name: Install latest version of git2r
-          command: r -e 'install.packages("git2r", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
+          command: Rscript -e 'install.packages("git2r", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
       - run:
           name: Install rmarkdown 1.7 and knitr 1.18
           command: |
-            r -e 'remotes::install_version("rmarkdown", "1.7", repos = "https://cran.rstudio.com/")'
-            r -e 'remotes::install_version("knitr", "1.18", repos = "https://cran.rstudio.com/")'
+            Rscript -e 'remotes::install_version("rmarkdown", "1.7", repos = "https://cran.rstudio.com/")'
+            Rscript -e 'remotes::install_version("knitr", "1.18", repos = "https://cran.rstudio.com/")'
       - run:
           name: Session information and installed package versions
-          command: r -p scripts/session-info.R
+          command: Rscript scripts/session-info.R
 #      - run:
 #          name: Build and check
 #          command: bash scripts/check.sh
@@ -275,10 +275,10 @@ jobs:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
-            r scripts/install-r-pkgs.R
+            Rscript scripts/install-r-pkgs.R
       - run:
           name: Session information and installed package versions
-          command: r -p scripts/session-info.R
+          command: Rscript scripts/session-info.R
       - run:
           name: Build and check
           command: bash scripts/check.sh
@@ -314,17 +314,17 @@ jobs:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
-            r scripts/install-r-pkgs.R
+            Rscript scripts/install-r-pkgs.R
       - run:
           name: Install knitr 1.18 and rmarkdown 1.7
           # For some reason install_version() was failing with https://cloud.r-project.org
           # but it works with https://cran.r-project.org
           command: |
-            r -e 'remotes::install_version("knitr", "1.18", upgrade = FALSE, repos = "https://cran.r-project.org")'
-            r -e 'remotes::install_version("rmarkdown", "1.7", upgrade = FALSE, repos = "https://cran.r-project.org")'
+            Rscript -e 'remotes::install_version("knitr", "1.18", upgrade = FALSE, repos = "https://cran.r-project.org")'
+            Rscript -e 'remotes::install_version("rmarkdown", "1.7", upgrade = FALSE, repos = "https://cran.r-project.org")'
       - run:
           name: Session information and installed package versions
-          command: r -p scripts/session-info.R
+          command: Rscript scripts/session-info.R
       - run:
           name: Build and check
           command: bash scripts/check.sh
@@ -411,7 +411,7 @@ jobs:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
-            r scripts/install-r-pkgs.R
+            Rscript scripts/install-r-pkgs.R
       - run:
           name: Install workflowr
           command: R CMD INSTALL --build /tmp/workflowr
@@ -421,7 +421,7 @@ jobs:
       - run:
           name: Record speed of wflow_publish() for version 1.4.0
           command: |
-            r -e 'remotes::install_version("workflowr", "1.4.0")'
+            Rscript -e 'remotes::install_version("workflowr", "1.4.0")'
             Rscript scripts/speed-test.R
       - save_cache:
           key: r-pkg-cache-v2-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
