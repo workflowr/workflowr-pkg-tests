@@ -240,9 +240,9 @@ jobs:
       - run:
           name: Session information and installed package versions
           command: Rscript scripts/session-info.R
-#      - run:
-#          name: Build and check
-#          command: bash scripts/check.sh
+      - run:
+          name: Build and check
+          command: bash scripts/check.sh
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
