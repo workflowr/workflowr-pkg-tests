@@ -185,6 +185,9 @@ jobs:
           name: Install latest version of git2r
           command: Rscript -e 'install.packages("git2r", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
       - run:
+          name: Install clipr 0.7.0
+          command: Rscript -e 'remotes::install_version("clipr", "0.7.0", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
+      - run:
           name: Session information and installed package versions
           command: Rscript scripts/session-info.R
       - run:
@@ -432,7 +435,8 @@ workflows:
   version: 2
   commit:
     jobs:
-      - speed
+      - future
+      - r353
   weekly:
     triggers:
       - schedule:
