@@ -435,8 +435,7 @@ workflows:
   version: 2
   commit:
     jobs:
-      - future
-      - r353
+      - speed
   weekly:
     triggers:
       - schedule:
