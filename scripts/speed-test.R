@@ -4,12 +4,28 @@
 
 library(workflowr)
 path <- fs::file_temp()
-wflow_start(path, change_wd = FALSE, user.name = "Test",
-            user.email = "test@test.com")
+
+message("\nwflow_start()")
+system.time(
+  start <- wflow_start(path, change_wd = FALSE, user.name = "Test",
+                       user.email = "test@test.com")
+)
+
 rmd <- fs::dir_ls(fs::path(path, "analysis"), glob = "*Rmd")
-for (i in 1:100) {
-  tmp <- lapply(rmd, function(x) cat("\nedit\n", file = x, append = TRUE))
-  wflow_git_commit(rmd, project = path)
-}
+
+message("\nwflow_git_commit() x100")
+system.time(
+  for (i in 1:100) {
+    tmp <- lapply(rmd, function(x) cat("\nedit\n", file = x, append = TRUE))
+    wflow_git_commit(rmd, project = path)
+  }
+)
+
 tmp <- lapply(rmd, function(x) cat("\nedit\n", file = x, append = TRUE))
-system.time(publish <- wflow_publish(rmd, "commit message", view = FALSE, project = path))
+
+message("\nwflow_publish()")
+system.time(
+  suppressMessages(
+    publish <- wflow_publish(rmd, "commit message", view = FALSE, project = path)
+  )
+)
