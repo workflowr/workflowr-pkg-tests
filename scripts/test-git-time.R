@@ -28,8 +28,7 @@ date_git <- system(sprintf("git -C %s log -n 1 --date=short --format=%%ad", path
 # Test that Git returns the correct date
 stopifnot(identical(
   date_git,
-  "2019-11-13" # Purposefully put the wrong date to trigger an error
-  # as.character(Sys.Date())
+  as.character(Sys.Date())
 ))
 
 # Test that Git and git2r return the same raw unix time
