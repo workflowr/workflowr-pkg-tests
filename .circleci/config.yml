@@ -445,7 +445,7 @@ jobs:
           name: Install R packages
           command: |
             mkdir -p ~/R/Library
-            Rscript -e 'install.packages(c("fs", "remotes", "testthat"))'
+            Rscript -e 'install.packages(c("fs", "remotes"))'
             Rscript -e 'remotes::install_github("ropensci/git2r")'
       - run:
           name: Configure R setup
@@ -457,7 +457,7 @@ jobs:
           command: Rscript -e 'Sys.time(); Sys.timezone()'
       - run:
           name: Test conversion of git_time to date
-          command: Rscript -e ' testthat::test_file("scripts/test-git-time.R")'
+          command: Rscript scripts/test-git-time.R
 
 workflows:
   version: 2

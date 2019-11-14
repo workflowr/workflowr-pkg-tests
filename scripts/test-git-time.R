@@ -2,9 +2,7 @@
 
 # Test conversion of git_time object to date
 #
-# Required packages: fs, git2r, testthat
-
-library(testthat)
+# Required packages: fs, git2r
 
 path <- fs::file_temp()
 fs::dir_create(path)
@@ -27,24 +25,22 @@ unix_git <- as.numeric(unix_git)
 date_git <- system(sprintf("git -C %s log -n 1 --date=short --format=%%ad", path),
                    intern = TRUE)
 
-test_that("Git returns the correct date", {
-  expect_identical(
-    date_git,
-    "2019-11-13" # Purposefully put the wrong date to trigger an error
-    # as.character(Sys.Date())
-  )
-})
+# Test that Git returns the correct date
+stopifnot(identical(
+  date_git,
+  "2019-11-13" # Purposefully put the wrong date to trigger an error
+  # as.character(Sys.Date())
+))
 
-test_that("Git and git2r return the same raw unix time", {
-  expect_identical(
-    unix_git2r,
-    unix_git
-  )
-})
+# Test that Git and git2r return the same raw unix time
+stopifnot(identical(
+  unix_git2r,
+  unix_git
+))
 
-test_that("Git and git2r return the same human-readable date", {
-  expect_identical(
-    date_git2r,
-    date_git
-  )
-})
+
+# Test that Git and git2r return the same human-readable date
+stopifnot(identical(
+  date_git2r,
+  date_git
+))
