@@ -451,7 +451,7 @@ jobs:
           name: Configure R setup
           command: |
             echo TZ=America/New_York >> ~/.Renviron # set time zone
-            echo options(warn=2) >> ~/.Rprofile # Treat warnings as errors
+            echo 'options(warn=2)' >> ~/.Rprofile # Treat warnings as errors
       - run:
           name: Record time and timezone
           command: Rscript -e 'Sys.time(); Sys.timezone()'
@@ -463,7 +463,6 @@ workflows:
   version: 2
   commit:
     jobs:
-      - speed
       - git_time
   hourly:
     triggers:
