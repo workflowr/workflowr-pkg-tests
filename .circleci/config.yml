@@ -431,12 +431,46 @@ jobs:
           key: r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
+  git_time:
+    environment:
+      R_LIBS: ~/R/Library
+    docker:
+      - image: rocker/r-base:latest
+      - checkout
+      - run:
+          name: Install system dependencies
+          command: bash scripts/install-system.sh
+      - run:
+          name: Install R packages
+          command: |
+            mkdir -p ~/R/Library
+            Rscript -e 'install.packages(c("fs", "remotes", "testthat"))'
+            Rscript -e 'remotes::install_github("ropensci/git2r")'
+      - run:
+          name: Record time and timezone
+          command: Rscript -e 'Sys.time(); Sys.timezone()'
+      - run:
+          name: Test conversion of git_time to date
+          command: Rscript -e ' testthat::test_file("scripts/test-git-time.R")'
 
 workflows:
   version: 2
   commit:
     jobs:
       - speed
+      - git_time
+  hourly:
+    triggers:
+      - schedule:
+          # "At minute 0"
+          # https://crontab.guru/#0_*_*_*_*
+          cron: "0 * * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - git_time
   weekly:
     triggers:
       - schedule:
