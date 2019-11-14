@@ -448,6 +448,11 @@ jobs:
             Rscript -e 'install.packages(c("fs", "remotes", "testthat"))'
             Rscript -e 'remotes::install_github("ropensci/git2r")'
       - run:
+          name: Configure R setup
+          command: |
+            echo TZ=America/New_York >> ~/.Renviron # set time zone
+            echo options(warn=2) >> ~/.Rprofile # Treat warnings as errors
+      - run:
           name: Record time and timezone
           command: Rscript -e 'Sys.time(); Sys.timezone()'
       - run:
