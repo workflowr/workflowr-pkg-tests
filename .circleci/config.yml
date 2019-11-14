@@ -436,6 +436,7 @@ jobs:
       R_LIBS: ~/R/Library
     docker:
       - image: rocker/r-base:latest
+    steps:
       - checkout
       - run:
           name: Install system dependencies
