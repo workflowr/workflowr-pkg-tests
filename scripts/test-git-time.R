@@ -30,7 +30,8 @@ date_git <- system(sprintf("git -C %s log -n 1 --date=short --format=%%ad", path
 test_that("Git returns the correct date", {
   expect_identical(
     date_git,
-    as.character(Sys.Date())
+    "2019-11-13" # Purposefully put the wrong date to trigger an error
+    # as.character(Sys.Date())
   )
 })
 
