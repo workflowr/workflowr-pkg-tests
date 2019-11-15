@@ -16,7 +16,7 @@ c1 <- git2r::commit(r, "The first commit to f1")
 
 # Info from git2r
 unix_git2r <- c1$author$when$time
-date_git2r <- as.character(as.Date(as.POSIXct(c1$author$when)))
+date_git2r <- as.character(as.Date(as.POSIXct(c1$author$when), tz = Sys.timezone()))
 
 # Info from Git
 unix_git <- system(sprintf("git -C %s log -n 1 --date=unix --format=%%ad", path),
@@ -40,6 +40,8 @@ cat("\nstr() of git_time object after as.POSIXct()\n")
 cat(str(as.POSIXct(c1$author$when)))
 cat("\nstr() of git_time object after as.POSIXct() and as.Date()\n")
 cat(str(as.Date(as.POSIXct(c1$author$when))))
+cat("\nstr() of git_time object after as.POSIXct() and as.Date() with tz\n")
+cat(str(as.Date(as.POSIXct(c1$author$when), tz = Sys.timezone())))
 
 # Test that Git returns the correct date
 stopifnot(identical(
