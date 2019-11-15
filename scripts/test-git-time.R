@@ -25,6 +25,22 @@ unix_git <- as.numeric(unix_git)
 date_git <- system(sprintf("git -C %s log -n 1 --date=short --format=%%ad", path),
                    intern = TRUE)
 
+# Print diagnostic information
+cat(sprintf("Timezone: %s\n", Sys.timezone()))
+cat(sprintf("Time: %s\n", Sys.time()))
+cat("\nUnix time\n")
+cat(sprintf("git2r\t%d\n", unix_git2r))
+cat(sprintf("Git\t%d\n", unix_git))
+cat("\nDate\n")
+cat(sprintf("git2r\t%s\n", date_git2r))
+cat(sprintf("Git\t%s\n", date_git))
+cat("\nstr() of git_time object\n")
+cat(str(c1$author$when))
+cat("\nstr() of git_time object after as.POSIXct()\n")
+cat(str(as.POSIXct(c1$author$when)))
+cat("\nstr() of git_time object after as.POSIXct() and as.Date()\n")
+cat(str(as.Date(as.POSIXct(c1$author$when))))
+
 # Test that Git returns the correct date
 stopifnot(identical(
   date_git,
@@ -36,7 +52,6 @@ stopifnot(identical(
   unix_git2r,
   unix_git
 ))
-
 
 # Test that Git and git2r return the same human-readable date
 stopifnot(identical(
