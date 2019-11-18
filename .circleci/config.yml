@@ -464,18 +464,18 @@ workflows:
   commit:
     jobs:
       - git_time
-  hourly:
-    triggers:
-      - schedule:
-          # "At minute 0"
-          # https://crontab.guru/#0_*_*_*_*
-          cron: "0 * * * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - git_time
+#  hourly:
+#    triggers:
+#      - schedule:
+#          # "At minute 0"
+#          # https://crontab.guru/#0_*_*_*_*
+#          cron: "0 * * * *"
+#          filters:
+#            branches:
+#              only:
+#                - master
+#    jobs:
+#      - git_time
   weekly:
     triggers:
       - schedule:
