@@ -464,6 +464,7 @@ workflows:
   commit:
     jobs:
       - git_time
+      - future
 #  hourly:
 #    triggers:
 #      - schedule:
