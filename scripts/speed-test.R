@@ -11,15 +11,31 @@ system.time(
                        user.email = "test@test.com")
 )
 
-rmd <- fs::dir_ls(fs::path(path, "analysis"), glob = "*Rmd")
+# Create a workflowr project with lots of R Markdown files in various states
+r <- git2r::repository(path)
+scratch <- fs::path(path, "analysis", glue::glue("scratch-{1:100}.Rmd"))
+fs::file_create(scratch)
+published <- fs::path(path, "analysis", glue::glue("published-{1:100}.Rmd"))
+fs::file_create(published)
+git2r::add(r, published)
+git2r::commit(r, "Commit Rmd files to be published")
+published_html <- fs::path(path, "docs", glue::glue("published-{1:100}.html"))
+fs::file_create(published_html)
+git2r::add(r, published_html)
+git2r::commit(r, "Commit html files")
+unpublished <- fs::path(path, "analysis", glue::glue("unpublished-{1:100}.Rmd"))
+fs::file_create(unpublished)
+git2r::add(r, unpublished)
+git2r::commit(r, "Commit Rmd files to be unpublished")
 
-message("\nwflow_git_commit() x100")
-system.time(
-  for (i in 1:100) {
-    tmp <- lapply(rmd, function(x) cat("\nedit\n", file = x, append = TRUE))
-    wflow_git_commit(rmd, project = path)
-  }
-)
+# These files will be edited and committed many times to generate many commits
+rmd <- fs::path(path, "analysis", c("index.Rmd", "about.Rmd", "license.Rmd"))
+
+for (i in 1:500) {
+  tmp <- lapply(rmd, function(x) cat("\nedit\n", file = x, append = TRUE))
+  git2r::add(r, rmd)
+  git2r::commit(r, glue::glue("commit {i}"))
+}
 
 tmp <- lapply(rmd, function(x) cat("\nedit\n", file = x, append = TRUE))
 
