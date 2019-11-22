@@ -421,18 +421,18 @@ jobs:
       - run:
           name: Install workflowr
           command: R CMD INSTALL --build /tmp/workflowr
-      - run:
-          name: Install dev version of git2r
-          command: Rscript -e 'remotes::install_github("ropensci/git2r")'
+#      - run:
+#          name: Install dev version of git2r
+#          command: Rscript -e 'remotes::install_github("ropensci/git2r")'
       - run:
           name: Record speed of wflow_publish() for dev versions of workflowr and git2r
           command: Rscript scripts/speed-test.R
       - run:
           name: Install workflowr 1.4.0
           command: Rscript -e 'remotes::install_version("workflowr", "1.4.0")'
-      - run:
-          name: Install git2r 0.26.1
-          command: Rscript -e 'remotes::install_version("git2r", "0.26.1")'
+#      - run:
+#          name: Install git2r 0.26.1
+#          command: Rscript -e 'remotes::install_version("git2r", "0.26.1")'
       - run:
           name: Record speed of wflow_publish() for workflowr 1.4.0 and git2r 0.26.1
           command: Rscript scripts/speed-test.R

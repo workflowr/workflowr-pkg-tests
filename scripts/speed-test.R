@@ -48,5 +48,6 @@ system.time(
 
 message("\nwflow_status()")
 # Do some proper bench marking
-bench_status <- bench::mark(wflow_status(project = path), iterations = 5)
-summary(bench_status, filter_gc = FALSE)[, c("min", "median", "mem_alloc", "n_itr", "n_gc")]
+bench_status <- bench::mark(wflow_status(project = path), iterations = 5,
+                            filter_gc = FALSE)
+bench_status[, c("min", "median", "mem_alloc", "n_itr", "n_gc")]
