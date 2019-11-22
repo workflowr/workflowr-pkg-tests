@@ -416,6 +416,9 @@ jobs:
             mkdir -p ~/R/Library
             Rscript scripts/install-r-pkgs.R
       - run:
+          name: Install bench package
+          command: Rscript -e 'install.packages("bench")'
+      - run:
           name: Install workflowr
           command: R CMD INSTALL --build /tmp/workflowr
       - run:

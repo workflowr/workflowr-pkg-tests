@@ -45,3 +45,8 @@ system.time(
     publish <- wflow_publish(rmd, "commit message", view = FALSE, project = path)
   )
 )
+
+message("\nwflow_status()")
+# Do some proper bench marking
+bench_status <- mark(wflow_status(project = path), iterations = 5)
+bench_status[, c("min", "median", "mem_alloc", "n_itr", "n_gc")]
