@@ -419,22 +419,28 @@ jobs:
           name: Install bench package
           command: Rscript -e 'install.packages("bench")'
       - run:
-          name: Install workflowr
-          command: R CMD INSTALL --build /tmp/workflowr
-#      - run:
-#          name: Install dev version of git2r
-#          command: Rscript -e 'remotes::install_github("ropensci/git2r")'
-      - run:
-          name: Record speed of wflow_publish() for dev versions of workflowr and git2r
-          command: Rscript scripts/speed-test.R
-      - run:
           name: Install workflowr 1.4.0
           command: Rscript -e 'remotes::install_version("workflowr", "1.4.0")'
-#      - run:
-#          name: Install git2r 0.26.1
-#          command: Rscript -e 'remotes::install_version("git2r", "0.26.1")'
       - run:
-          name: Record speed of wflow_publish() for workflowr 1.4.0 and git2r 0.26.1
+          name: Record speed of workflowr 1.4.0
+          command: Rscript scripts/speed-test.R
+      - run:
+          name: Install workflowr 1.5.0
+          command: Rscript -e 'remotes::install_version("workflowr", "1.5.0")'
+      - run:
+          name: Record speed of workflowr 1.5.0
+          command: Rscript scripts/speed-test.R
+      - run:
+          name: Install workflowr dev
+          command: R CMD INSTALL --build /tmp/workflowr
+      - run:
+          name: Record speed of workflowr dev
+          command: Rscript scripts/speed-test.R
+      - run:
+          name: Install git2r dev
+          command: Rscript -e 'remotes::install_github("ropensci/git2r")'
+      - run:
+          name: Record speed of workflowr dev with git2r dev
           command: Rscript scripts/speed-test.R
       - save_cache:
           key: r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
