@@ -337,6 +337,49 @@ jobs:
           key: r-pkg-cache-v3-latest-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
+  rmd_1.10:
+    environment:
+      NOT_CRAN: true
+      PANDOC: 2.7
+      R_LIBS: ~/R/Library
+    docker:
+      - image: rocker/r-base:latest
+    steps:
+      - restore_cache:
+          keys:
+            - r-pkg-cache-v3-latest-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v3-latest-{{ arch }}-
+      - checkout
+      - run:
+          name: Install system dependencies
+          command: bash scripts/install-system.sh
+      - run:
+          name: Install pandoc
+          command: bash scripts/install-pandoc.sh $PANDOC
+      - run:
+          name: Clone workflowr
+          command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr
+      - run:
+          name: Install package dependencies
+          command: |
+            mkdir -p ~/R/Library
+            Rscript scripts/install-r-pkgs.R
+      - run:
+          name: Install rmarkdown 1.10
+          command: |
+            Rscript -e 'remotes::install_version("rmarkdown", "1.10", upgrade = FALSE, repos = "https://cran.r-project.org")'
+      - run:
+          name: Session information and installed package versions
+          command: Rscript scripts/session-info.R
+      - run:
+          name: Build and check
+          command: bash scripts/check.sh
+      - store_artifacts:
+          path: /tmp/workflowr/workflowr.Rcheck/
+      - save_cache:
+          key: r-pkg-cache-v3-latest-{{ arch }}-{{ .Branch }}
+          paths:
+            - "~/R/Library"
   callr_3.3.0:
     docker:
       - image: continuumio/miniconda3:4.7.10
@@ -480,6 +523,7 @@ workflows:
     jobs:
       - git_time
       - speed
+      - rmd_1.10
 #  hourly:
 #    triggers:
 #      - schedule:
@@ -510,6 +554,7 @@ workflows:
       - r325
       - pandoc_one
       - rmd_1.7
+      - rmd_1.10
       - callr_3.3.0
       - speed
       - git_time
