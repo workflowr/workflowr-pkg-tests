@@ -524,6 +524,7 @@ workflows:
       - git_time
       - speed
       - rmd_1.10
+      - r353
 #  hourly:
 #    triggers:
 #      - schedule:
