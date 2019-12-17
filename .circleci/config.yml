@@ -523,8 +523,7 @@ workflows:
     jobs:
       - git_time
       - speed
-      - rmd_1.10
-      - r353
+      - r325
 #  hourly:
 #    triggers:
 #      - schedule:
