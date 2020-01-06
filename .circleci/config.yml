@@ -68,7 +68,7 @@ jobs:
           name: Build and check package
           command: |
             cd ../workflowr
-            bash build.sh --no-manual
+            bash scripts/build.sh --no-manual
       - store_artifacts:
           path: ../workflowr/workflowr.Rcheck/
       - save_cache:
@@ -429,7 +429,7 @@ jobs:
           name: Build and check package
           command: |
             cd ../workflowr
-            bash build.sh --no-manual
+            bash scripts/build.sh --no-manual
       - store_artifacts:
           path: ../workflowr/workflowr.Rcheck/
   speed:
@@ -523,6 +523,8 @@ workflows:
     jobs:
       - git_time
       - speed
+      - callr_3.3.0
+      - future
 #  hourly:
 #    triggers:
 #      - schedule:
