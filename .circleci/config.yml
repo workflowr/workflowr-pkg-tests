@@ -437,7 +437,7 @@ jobs:
       PANDOC: 2.7
       R_LIBS: ~/R/Library
     docker:
-      - image: rocker/r-ver:3.6.1
+      - image: rocker/r-base:latest
     steps:
       - restore_cache:
           keys:
