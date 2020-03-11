@@ -521,10 +521,17 @@ workflows:
   version: 2
   commit:
     jobs:
-      - git_time
-      - speed
-      - callr_3.3.0
       - future
+      - devel
+      - r361
+      - r353
+      - r325
+      - pandoc_one
+      - rmd_1.7
+      - rmd_1.10
+      - callr_3.3.0
+      - speed
+      - git_time
 #  hourly:
 #    triggers:
 #      - schedule:
