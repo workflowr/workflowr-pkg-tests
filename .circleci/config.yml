@@ -474,6 +474,12 @@ jobs:
           name: Record speed of workflowr 1.5.0
           command: Rscript scripts/speed-test.R
       - run:
+          name: Install workflowr 1.6.0
+          command: Rscript -e 'remotes::install_version("workflowr", "1.6.0")'
+      - run:
+          name: Record speed of workflowr 1.6.0
+          command: Rscript scripts/speed-test.R
+      - run:
           name: Install workflowr dev
           command: R CMD INSTALL --build /tmp/workflowr
       - run:
@@ -521,15 +527,6 @@ workflows:
   version: 2
   commit:
     jobs:
-      - future
-      - devel
-      - r361
-      - r353
-      - r325
-      - pandoc_one
-      - rmd_1.7
-      - rmd_1.10
-      - callr_3.3.0
       - speed
       - git_time
 #  hourly:
