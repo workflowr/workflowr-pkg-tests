@@ -452,7 +452,7 @@ jobs:
           command: bash scripts/install-pandoc.sh $PANDOC
       - run:
           name: Clone workflowr
-          command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr
+          command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr/
       - run:
           name: Install package dependencies
           command: |
@@ -481,13 +481,16 @@ jobs:
           command: Rscript scripts/speed-test.R
       - run:
           name: Install workflowr dev
-          command: R CMD INSTALL --build /tmp/workflowr
+          command: R CMD INSTALL --build /tmp/workflowr/
       - run:
           name: Record speed of workflowr dev
           command: Rscript scripts/speed-test.R
       - run:
+          name: Clone git2r
+          command: git clone https://github.com/ropensci/git2r.git /tmp/git2r/
+      - run:
           name: Install git2r dev
-          command: Rscript -e 'remotes::install_github("ropensci/git2r")'
+          command: R CMD INSTALL --build /tmp/git2r/
       - run:
           name: Record speed of workflowr dev with git2r dev
           command: Rscript scripts/speed-test.R
