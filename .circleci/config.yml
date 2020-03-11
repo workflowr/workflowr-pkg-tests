@@ -9,8 +9,8 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
-            - r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
+            - r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
       - checkout
       - run:
           name: Install system dependencies
@@ -72,7 +72,7 @@ jobs:
       - store_artifacts:
           path: ../workflowr/workflowr.Rcheck/
       - save_cache:
-          key: r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+          key: r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
   devel:
@@ -85,8 +85,8 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
-            - r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
+            - r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
       - checkout
       - run:
           name: Install system dependencies
@@ -111,7 +111,7 @@ jobs:
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
-          key: r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+          key: r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
   r361:
@@ -124,8 +124,8 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
-            - r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
+            - r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
       - checkout
       - run:
           name: Install system dependencies
@@ -150,7 +150,7 @@ jobs:
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
-          key: r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+          key: r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
   r353:
@@ -163,8 +163,8 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
-            - r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
+            - r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
       - checkout
       - run:
           name: Install system dependencies
@@ -196,7 +196,7 @@ jobs:
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
-          key: r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+          key: r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
   r325:
@@ -209,8 +209,8 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
-            - r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
+            - r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
       - checkout
       - run:
           name: Install system dependencies
@@ -249,7 +249,7 @@ jobs:
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
-          key: r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+          key: r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
   pandoc_one:
@@ -262,8 +262,8 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - r-pkg-cache-v3-latest-{{ arch }}-{{ .Branch }}
-            - r-pkg-cache-v3-latest-{{ arch }}-
+            - r-pkg-cache-v4-latest-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v4-latest-{{ arch }}-
       - checkout
       - run:
           name: Install system dependencies
@@ -288,7 +288,7 @@ jobs:
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
-          key: r-pkg-cache-v3-latest-{{ arch }}-{{ .Branch }}
+          key: r-pkg-cache-v4-latest-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
   rmd_1.7:
@@ -301,8 +301,8 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - r-pkg-cache-v3-latest-{{ arch }}-{{ .Branch }}
-            - r-pkg-cache-v3-latest-{{ arch }}-
+            - r-pkg-cache-v4-latest-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v4-latest-{{ arch }}-
       - checkout
       - run:
           name: Install system dependencies
@@ -334,7 +334,7 @@ jobs:
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
-          key: r-pkg-cache-v3-latest-{{ arch }}-{{ .Branch }}
+          key: r-pkg-cache-v4-latest-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
   rmd_1.10:
@@ -347,8 +347,8 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - r-pkg-cache-v3-latest-{{ arch }}-{{ .Branch }}
-            - r-pkg-cache-v3-latest-{{ arch }}-
+            - r-pkg-cache-v4-latest-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v4-latest-{{ arch }}-
       - checkout
       - run:
           name: Install system dependencies
@@ -377,7 +377,7 @@ jobs:
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
-          key: r-pkg-cache-v3-latest-{{ arch }}-{{ .Branch }}
+          key: r-pkg-cache-v4-latest-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
   callr_3.3.0:
@@ -441,8 +441,8 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
-            - r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
+            - r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+            - r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
       - checkout
       - run:
           name: Install system dependencies
@@ -495,7 +495,7 @@ jobs:
           name: Record speed of workflowr dev with git2r dev
           command: Rscript scripts/speed-test.R
       - save_cache:
-          key: r-pkg-cache-v3-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
+          key: r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
   git_time:
