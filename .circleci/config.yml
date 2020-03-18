@@ -238,6 +238,7 @@ jobs:
       - run:
           name: Install rmarkdown 1.7 and knitr 1.18
           command: |
+            install.packages("caTools")
             Rscript -e 'remotes::install_version("rmarkdown", "1.7", repos = "https://cran.rstudio.com/")'
             Rscript -e 'remotes::install_version("knitr", "1.18", repos = "https://cran.rstudio.com/")'
       - run:
@@ -530,6 +531,9 @@ workflows:
   version: 2
   commit:
     jobs:
+      - r325
+      - rmd_1.7
+      - rmd_1.10
       - speed
       - git_time
 #  hourly:
