@@ -473,10 +473,7 @@ jobs:
                           r-workflowr
       - run:
           name: Clone workflowr
-          command: |
-            git clone https://github.com/jdblischak/workflowr.git ../workflowr
-            cd ../workflowr
-            git checkout python-chunks
+          command: git clone https://github.com/jdblischak/workflowr.git ../workflowr
       - run:
           name: Build and install workflowr
           command: |
@@ -595,8 +592,6 @@ workflows:
   version: 2
   commit:
     jobs:
-      - reticulate
-      - speed
       - git_time
 #  hourly:
 #    triggers:
@@ -630,5 +625,6 @@ workflows:
       - rmd_1.7
       - rmd_1.10
       - callr_3.3.0
+      - reticulate
       - speed
       - git_time
