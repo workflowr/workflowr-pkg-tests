@@ -433,6 +433,70 @@ jobs:
             bash scripts/build.sh --no-manual
       - store_artifacts:
           path: ../workflowr/workflowr.Rcheck/
+  reticulate:
+    docker:
+      - image: continuumio/miniconda3:4.7.10
+    environment:
+      NOT_CRAN: true
+      R_LIBS: ~/R/Library
+    steps:
+      - checkout
+      - run:
+          name: Unset CircleCI's forced conversion of HTTPS->SSH
+          command: git config --global --unset "url.ssh://git@github.com.insteadof"
+      - run:
+          name: Configure conda
+          command: |
+            conda config --set always_yes yes
+            conda config --set quiet yes
+            conda config --set changeps1 no
+            conda config --set auto_update_conda no
+            conda config --add channels defaults
+            conda config --add channels conda-forge
+      - run:
+          name: Install
+          command: |
+            conda update --all
+            conda install matplotlib \
+                          qpdf \
+                          r-base \
+                          r-clipr \
+                          r-covr \
+                          r-devtools \
+                          r-miniui \
+                          r-recommended \
+                          r-reticulate \
+                          r-shiny \
+                          r-spelling \
+                          r-testthat \
+                          r-withr \
+                          r-workflowr
+      - run:
+          name: Clone workflowr
+          command: |
+            git clone https://github.com/jdblischak/workflowr.git ../workflowr
+            cd ../workflowr
+            git checkout python-chunks
+      - run:
+          name: Build and install workflowr
+          command: |
+            mkdir -p ~/R/Library
+            R CMD build --no-build-vignettes --no-manual ../workflowr
+            R CMD INSTALL workflowr_*tar.gz
+      - run:
+          name: Session information and installed package versions
+          command: |
+            Rscript -e 'library(workflowr); devtools::session_info()'
+            conda list
+      - run:
+          name: Test wflow_html() with reticulate >= 1.15
+          command: Rscript -e 'devtools::test(pkg = "../workflowr", filter = "html$")'
+      - run:
+          name: Install reticulate 1.14
+          command: conda install r-reticulate==1.14
+      - run:
+          name: Test wflow_html() with reticulate == 1.14
+          command: Rscript -e 'devtools::test(pkg = "../workflowr", filter = "html$")'
   speed:
     environment:
       PANDOC: 2.7
@@ -531,7 +595,7 @@ workflows:
   version: 2
   commit:
     jobs:
-      - r325
+      - reticulate
       - speed
       - git_time
 #  hourly:
