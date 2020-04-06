@@ -601,6 +601,7 @@ workflows:
     jobs:
       - git_time
       - r325
+      - reticulate
 #  hourly:
 #    triggers:
 #      - schedule:
