@@ -42,6 +42,7 @@ jobs:
             Rscript -e 'remotes::install_github("r-lib/httr")'
             Rscript -e 'remotes::install_github("yihui/knitr")'
             Rscript -e 'remotes::install_github("rstudio/miniUI")'
+            Rscript -e 'remotes::install_github("rstudio/reticulate")'
             Rscript -e 'remotes::install_github("rstudio/rmarkdown")'
             Rscript -e 'remotes::install_github("krlmlr/rprojroot")'
             Rscript -e 'remotes::install_github("rstudio/rstudioapi")'
@@ -142,6 +143,9 @@ jobs:
             mkdir -p ~/R/Library
             Rscript scripts/install-r-pkgs.R
       - run:
+          name: Install package dependencies (version in old MRAN snapshot is too outdated)
+          command: Rscript -e 'install.packages(c("reticulate"), repos = "https://cran.rstudio.com/", dependencies = FALSE)'
+      - run:
           name: Session information and installed package versions
           command: Rscript scripts/session-info.R
       - run:
@@ -180,13 +184,9 @@ jobs:
           command: |
             mkdir -p ~/R/Library
             Rscript scripts/install-r-pkgs.R
-      # Hot fix required b/c getOption("repos") is set to https://mran.microsoft.com/snapshot/2019-04-26
       - run:
-          name: Install latest version of git2r
-          command: Rscript -e 'install.packages("git2r", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
-      - run:
-          name: Install clipr 0.7.0
-          command: Rscript -e 'remotes::install_version("clipr", "0.7.0", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
+          name: Install package dependencies (version in old MRAN snapshot is too outdated)
+          command: Rscript -e 'install.packages(c("clipr", "git2r", "reticulate"), repos = "https://cran.rstudio.com/", dependencies = FALSE)'
       - run:
           name: Session information and installed package versions
           command: Rscript scripts/session-info.R
@@ -222,19 +222,18 @@ jobs:
           name: Clone workflowr
           command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr
       - run:
-          name: Install package dependencies (not in old MRAN snapshot, or too outdated)
+          name: Install package dependencies (not in old MRAN snapshot)
           command: |
             mkdir -p ~/R/Library
-            Rscript -e 'install.packages(c("callr", "clipr", "fs", "glue", "rstudioapi", "shiny", "spelling", "stringr", "testthat", "withr"), repos = "https://cran.rstudio.com/")'
+            Rscript -e 'install.packages(c("callr", "fs", "glue", "spelling"), repos = "https://cran.rstudio.com/")'
       - run:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
             Rscript scripts/install-r-pkgs.R
-      # Hot fix required b/c getOption("repos") is set to older MRAN mirror
       - run:
-          name: Install latest version of git2r
-          command: Rscript -e 'install.packages("git2r", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
+          name: Install package dependencies (version in old MRAN snapshot is too outdated)
+          command: Rscript -e 'install.packages(c("clipr", "git2r", "reticulate", "rstudioapi", "shiny", "stringr", "testthat", "withr"), repos = "https://cran.rstudio.com/", dependencies = FALSE)'
       - run:
           name: Install rmarkdown 1.7 and knitr 1.18
           command: |
@@ -413,6 +412,7 @@ jobs:
                           r-devtools \
                           r-miniui \
                           r-recommended \
+                          r-reticulate \
                           r-shiny \
                           r-spelling \
                           r-testthat \
@@ -593,6 +593,11 @@ workflows:
   commit:
     jobs:
       - git_time
+      - future
+      - r361
+      - r353
+      - r325
+      - callr_3.3.0
 #  hourly:
 #    triggers:
 #      - schedule:
