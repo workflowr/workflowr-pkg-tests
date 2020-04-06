@@ -144,7 +144,7 @@ jobs:
             Rscript scripts/install-r-pkgs.R
       - run:
           name: Install package dependencies (version in old MRAN snapshot is too outdated)
-          command: Rscript -e 'install.packages(c("reticulate"), repos = "https://cran.rstudio.com/", dependencies = FALSE)'
+          command: Rscript -e 'install.packages(c("rappdirs", "reticulate"), repos = "https://cran.rstudio.com/", dependencies = FALSE)'
       - run:
           name: Session information and installed package versions
           command: Rscript scripts/session-info.R
@@ -186,7 +186,7 @@ jobs:
             Rscript scripts/install-r-pkgs.R
       - run:
           name: Install package dependencies (version in old MRAN snapshot is too outdated)
-          command: Rscript -e 'install.packages(c("clipr", "git2r", "reticulate"), repos = "https://cran.rstudio.com/", dependencies = FALSE)'
+          command: Rscript -e 'install.packages(c("clipr", "git2r", "rappdirs", "reticulate"), repos = "https://cran.rstudio.com/", dependencies = FALSE)'
       - run:
           name: Session information and installed package versions
           command: Rscript scripts/session-info.R
@@ -233,7 +233,7 @@ jobs:
             Rscript scripts/install-r-pkgs.R
       - run:
           name: Install package dependencies (version in old MRAN snapshot is too outdated)
-          command: Rscript -e 'install.packages(c("clipr", "git2r", "reticulate", "rstudioapi", "shiny", "stringr", "testthat", "withr"), repos = "https://cran.rstudio.com/", dependencies = FALSE)'
+          command: Rscript -e 'install.packages(c("clipr", "git2r", "rappdirs", "reticulate", "rstudioapi", "shiny", "stringr", "testthat", "withr"), repos = "https://cran.rstudio.com/", dependencies = FALSE)'
       - run:
           name: Install rmarkdown 1.7 and knitr 1.18
           command: |
@@ -593,11 +593,9 @@ workflows:
   commit:
     jobs:
       - git_time
-      - future
       - r361
       - r353
       - r325
-      - callr_3.3.0
 #  hourly:
 #    triggers:
 #      - schedule:
