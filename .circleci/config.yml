@@ -240,7 +240,7 @@ jobs:
           name: Install package dependencies (version in old MRAN snapshot is too outdated)
           # Have to also install dependencies since the MRAN versions are so old
           # that many of the packages added new dependencies.
-          command: Rscript -e 'install.packages(c("clipr", "git2r", "rstudioapi", "shiny", "stringr", "testthat", "withr"), repos = "https://cran.rstudio.com/")'
+          command: Rscript -e 'install.packages(c("clipr", "git2r", "rprojroot", "rstudioapi", "shiny", "stringr", "testthat", "withr"), repos = "https://cran.rstudio.com/")'
       - run:
           name: Install rmarkdown 1.7 and knitr 1.18
           command: |
