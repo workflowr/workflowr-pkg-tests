@@ -600,8 +600,7 @@ workflows:
   commit:
     jobs:
       - git_time
-      - r325
-      - reticulate
+      - future
 #  hourly:
 #    triggers:
 #      - schedule:
