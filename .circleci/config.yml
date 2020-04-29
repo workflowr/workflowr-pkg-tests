@@ -5,6 +5,7 @@ jobs:
       - image: rocker/r-ver:devel
     environment:
       NOT_CRAN: true
+      PANDOC: 2.9.2.1
       R_LIBS: ~/R/Library
     steps:
       - restore_cache:
@@ -14,18 +15,10 @@ jobs:
       - checkout
       - run:
           name: Install system dependencies
-          command: |
-            apt-get update
-            apt-get install --yes --no-install-recommends \
-              git \
-              libcurl4-openssl-dev \
-              libgit2-dev \
-              libssl-dev \
-              libxml2-dev \
-              pandoc \
-              pandoc-citeproc \
-              qpdf \
-              zlib1g-dev
+          command: bash scripts/install-system.sh
+      - run:
+          name: Install pandoc
+          command: bash scripts/install-pandoc.sh $PANDOC
       - run:
           name: Install package dependencies from GitHub
           command: |
