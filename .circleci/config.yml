@@ -136,9 +136,6 @@ jobs:
             mkdir -p ~/R/Library
             Rscript scripts/install-r-pkgs.R
       - run:
-          name: Install package dependencies (version in old MRAN snapshot is too outdated)
-          command: Rscript -e 'install.packages(c("rappdirs", "reticulate"), repos = "https://cran.rstudio.com/", dependencies = FALSE)'
-      - run:
           name: Session information and installed package versions
           command: Rscript scripts/session-info.R
       - run:
@@ -594,6 +591,8 @@ workflows:
     jobs:
       - git_time
       - r363
+      - rmd_1.7
+      - rmd_1.10
 #  hourly:
 #    triggers:
 #      - schedule:
