@@ -11,7 +11,7 @@ Name  | Purpose
 ------------- | -------------
 future        | Catch future errors by installing development versions of dependencies
 devel         | Run tests with development version of R
-r361          | Run tests with R 3.6.1
+r363          | Run tests with R 3.6.3
 r353          | Run tests with R 3.5.3
 r325          | Run tests with minimum required version of R (3.2.5)
 pandoc_one    | Run tests with pandoc 1.19 (breaking changes introduced in pandoc 2+)

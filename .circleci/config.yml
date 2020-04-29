@@ -108,13 +108,13 @@ jobs:
           key: r-pkg-cache-v4-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
-  r361:
+  r363:
     environment:
       NOT_CRAN: true
       PANDOC: 2.7
       R_LIBS: ~/R/Library
     docker:
-      - image: rocker/r-ver:3.6.1
+      - image: rocker/r-ver:3.6.3
     steps:
       - restore_cache:
           keys:
@@ -593,7 +593,7 @@ workflows:
   commit:
     jobs:
       - git_time
-      - future
+      - r363
 #  hourly:
 #    triggers:
 #      - schedule:
@@ -619,7 +619,7 @@ workflows:
     jobs:
       - future
       - devel
-      - r361
+      - r363
       - r353
       - r325
       - pandoc_one
