@@ -591,7 +591,8 @@ workflows:
   version: 2
   commit:
     jobs:
-      - reticulate
+      - future
+      - devel
       - git_time
 #  hourly:
 #    triggers:
