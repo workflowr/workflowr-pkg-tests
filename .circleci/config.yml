@@ -467,7 +467,9 @@ jobs:
                           r-spelling \
                           r-testthat \
                           r-withr \
-                          r-workflowr
+                          r-workflowr \
+                          xorg-libsm \
+                          xorg-libxt
       - run:
           name: Clone workflowr
           command: git clone https://github.com/jdblischak/workflowr.git ../workflowr
@@ -589,17 +591,7 @@ workflows:
   version: 2
   commit:
     jobs:
-      - future
-      - devel
-      - r363
-      - r353
-      - r325
-      - pandoc_one
-      - rmd_1.7
-      - rmd_1.10
-      - callr_3.3.0
       - reticulate
-      - speed
       - git_time
 #  hourly:
 #    triggers:
