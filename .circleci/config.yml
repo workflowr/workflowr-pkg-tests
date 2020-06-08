@@ -275,6 +275,7 @@ jobs:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
+            Rscript -e 'install.packages("stringi")'
             Rscript scripts/install-r-pkgs.R
       - run:
           name: Session information and installed package versions
@@ -314,6 +315,7 @@ jobs:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
+            Rscript -e 'install.packages("stringi")'
             Rscript scripts/install-r-pkgs.R
       - run:
           name: Install knitr 1.18 and rmarkdown 1.7
@@ -360,6 +362,7 @@ jobs:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
+            Rscript -e 'install.packages("stringi")'
             Rscript scripts/install-r-pkgs.R
       - run:
           name: Install rmarkdown 1.10
@@ -518,6 +521,7 @@ jobs:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
+            Rscript -e 'install.packages("stringi")'
             Rscript scripts/install-r-pkgs.R
       - run:
           name: Install bench package
