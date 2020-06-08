@@ -63,6 +63,7 @@ jobs:
           command: |
             cd ../workflowr
             bash scripts/build.sh --no-manual
+          no_output_timeout: 20m
       - store_artifacts:
           path: ../workflowr/workflowr.Rcheck/
       - save_cache:
@@ -102,6 +103,7 @@ jobs:
       - run:
           name: Build and check
           command: bash scripts/check.sh
+          no_output_timeout: 20m
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
@@ -141,6 +143,7 @@ jobs:
       - run:
           name: Build and check
           command: bash scripts/check.sh
+          no_output_timeout: 20m
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
@@ -183,6 +186,7 @@ jobs:
       - run:
           name: Build and check
           command: bash scripts/check.sh
+          no_output_timeout: 20m
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
@@ -243,6 +247,7 @@ jobs:
       - run:
           name: Build and check
           command: bash scripts/check.sh
+          no_output_timeout: 20m
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
@@ -283,6 +288,7 @@ jobs:
       - run:
           name: Build and check
           command: bash scripts/check.sh
+          no_output_timeout: 20m
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
@@ -330,6 +336,7 @@ jobs:
       - run:
           name: Build and check
           command: bash scripts/check.sh
+          no_output_timeout: 20m
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
@@ -374,6 +381,7 @@ jobs:
       - run:
           name: Build and check
           command: bash scripts/check.sh
+          no_output_timeout: 20m
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
@@ -431,6 +439,7 @@ jobs:
           command: |
             cd ../workflowr
             bash scripts/build.sh --no-manual
+          no_output_timeout: 20m
       - store_artifacts:
           path: ../workflowr/workflowr.Rcheck/
   reticulate:
