@@ -70,12 +70,12 @@ jobs:
           paths:
             - "~/R/Library"
   devel:
+    docker:
+      - image: rocker/r-ver:devel
     environment:
       NOT_CRAN: true
       PANDOC: 2.7
       R_LIBS: ~/R/Library
-    docker:
-      - image: rocker/r-ver:devel
     steps:
       - restore_cache:
           keys:
@@ -109,12 +109,12 @@ jobs:
           paths:
             - "~/R/Library"
   r363:
+    docker:
+      - image: rocker/r-ver:3.6.3
     environment:
       NOT_CRAN: true
       PANDOC: 2.7
       R_LIBS: ~/R/Library
-    docker:
-      - image: rocker/r-ver:3.6.3
     steps:
       - restore_cache:
           keys:
@@ -148,12 +148,12 @@ jobs:
           paths:
             - "~/R/Library"
   r353:
+    docker:
+      - image: rocker/r-ver:3.5.3
     environment:
       NOT_CRAN: true
       PANDOC: 2.7
       R_LIBS: ~/R/Library
-    docker:
-      - image: rocker/r-ver:3.5.3
     steps:
       - restore_cache:
           keys:
@@ -190,12 +190,12 @@ jobs:
           paths:
             - "~/R/Library"
   r325:
+    docker:
+      - image: rocker/r-ver:3.2.5
     environment:
       NOT_CRAN: true
       PANDOC: 2.7
       R_LIBS: ~/R/Library
-    docker:
-      - image: rocker/r-ver:3.2.5
     steps:
       - restore_cache:
           keys:
@@ -250,12 +250,12 @@ jobs:
           paths:
             - "~/R/Library"
   pandoc_one:
+    docker:
+      - image: rocker/r-base:latest
     environment:
       NOT_CRAN: true
       PANDOC: 1.19
       R_LIBS: ~/R/Library
-    docker:
-      - image: rocker/r-base:latest
     steps:
       - restore_cache:
           keys:
@@ -289,12 +289,12 @@ jobs:
           paths:
             - "~/R/Library"
   rmd_1.7:
+    docker:
+      - image: rocker/r-base:latest
     environment:
       NOT_CRAN: true
       PANDOC: 2.7
       R_LIBS: ~/R/Library
-    docker:
-      - image: rocker/r-base:latest
     steps:
       - restore_cache:
           keys:
@@ -335,12 +335,12 @@ jobs:
           paths:
             - "~/R/Library"
   rmd_1.10:
+    docker:
+      - image: rocker/r-base:latest
     environment:
       NOT_CRAN: true
       PANDOC: 2.7
       R_LIBS: ~/R/Library
-    docker:
-      - image: rocker/r-base:latest
     steps:
       - restore_cache:
           keys:
@@ -494,11 +494,11 @@ jobs:
           name: Test wflow_html() with reticulate == 1.14
           command: Rscript -e 'devtools::test(pkg = "../workflowr", filter = "html$")'
   speed:
+    docker:
+      - image: rocker/r-base:latest
     environment:
       PANDOC: 2.7
       R_LIBS: ~/R/Library
-    docker:
-      - image: rocker/r-base:latest
     steps:
       - restore_cache:
           keys:
@@ -560,10 +560,10 @@ jobs:
           paths:
             - "~/R/Library"
   git_time:
-    environment:
-      R_LIBS: ~/R/Library
     docker:
       - image: rocker/r-base:latest
+    environment:
+      R_LIBS: ~/R/Library
     steps:
       - checkout
       - run:
