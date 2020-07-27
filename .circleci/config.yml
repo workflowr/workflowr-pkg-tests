@@ -542,12 +542,6 @@ jobs:
           name: Record speed of workflowr 1.4.0
           command: Rscript scripts/speed-test.R
       - run:
-          name: Install workflowr 1.5.0
-          command: Rscript -e 'remotes::install_version("workflowr", "1.5.0")'
-      - run:
-          name: Record speed of workflowr 1.5.0
-          command: Rscript scripts/speed-test.R
-      - run:
           name: Install workflowr from CRAN
           command: Rscript -e 'install.packages("workflowr")'
       - run:
