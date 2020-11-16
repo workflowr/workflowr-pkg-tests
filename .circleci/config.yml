@@ -224,6 +224,9 @@ jobs:
             # hunspell requires a minimum of 0.12.12, so using that for now.
             Rscript -e 'install.packages("remotes", repos = "https://cran.rstudio.com/")'
             Rscript -e 'remotes::install_version("Rcpp", "0.12.12", repos = "https://cran.rstudio.com/")'
+            # Recent versions of digest requires R >= 3.3.0. Install older
+            # version available in MRAN snapshot.
+            Rscript -e 'install.packages("digest")'
             Rscript -e 'install.packages(c("callr", "fs", "glue", "reticulate", "spelling"), repos = "https://cran.rstudio.com/")'
       - run:
           name: Install package dependencies
@@ -600,6 +603,7 @@ workflows:
     jobs:
       - speed
       - git_time
+      - r325
 #  hourly:
 #    triggers:
 #      - schedule:
