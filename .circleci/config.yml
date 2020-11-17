@@ -227,7 +227,10 @@ jobs:
             # Recent versions of digest requires R >= 3.3.0. Install older
             # version available in MRAN snapshot.
             Rscript -e 'install.packages("digest")'
-            Rscript -e 'install.packages(c("callr", "fs", "glue", "reticulate", "spelling"), repos = "https://cran.rstudio.com/")'
+            Rscript -e 'install.packages(c("callr", "fs", "glue", "reticulate"), repos = "https://cran.rstudio.com/")'
+            # Install spelling 2.1 to avoid error from tools::loadPkgRdMacros()
+            # that is called in spelling 2.2.
+            Rscript -e 'remotes::install_version("spelling", "2.1", repos = "https://cran.rstudio.com/")'
       - run:
           name: Install package dependencies
           command: |
