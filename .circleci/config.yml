@@ -606,7 +606,7 @@ workflows:
     jobs:
       - speed
       - git_time
-      - r325
+      - pandoc_one
 #  hourly:
 #    triggers:
 #      - schedule:

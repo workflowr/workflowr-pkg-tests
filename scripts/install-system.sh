@@ -11,6 +11,7 @@ apt-get install -y \
   libxml2-dev \
   libxt6 \
   nano \
+  netbase \
   qpdf \
   wget \
   zlib1g-dev
