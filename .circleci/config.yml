@@ -227,29 +227,31 @@ jobs:
             # Recent versions of digest requires R >= 3.3.0. Install older
             # version available in MRAN snapshot.
             Rscript -e 'install.packages("digest")'
+
             Rscript -e 'install.packages(c("callr", "fs", "glue", "reticulate"), repos = "https://cran.rstudio.com/")'
+
             # Install spelling 2.1 to avoid error from tools::loadPkgRdMacros()
             # that is called in spelling 2.2.
             Rscript -e 'remotes::install_version("spelling", "2.1", repos = "https://cran.rstudio.com/")'
-            Rscript -e 'if (requireNamespace("htmltools", quietly = TRUE)) packageVersion("htmltools") else cat("Not installed\n")'
+            # rlang and vctrs dropped support for R 3.2 and don't exist in the
+            # MRAN snapshot from 2016, so have to install older version.
+            Rscript -e 'remotes::install_version("rlang", "0.4.8", repos = "https://cran.rstudio.com/")'
+            Rscript -e 'remotes::install_version("vctrs", "0.3.4", repos = "https://cran.rstudio.com/")'
       - run:
           name: Install package dependencies
           command: |
             mkdir -p ~/R/Library
             Rscript scripts/install-r-pkgs.R
-            Rscript -e 'if (requireNamespace("htmltools", quietly = TRUE)) packageVersion("htmltools") else cat("Not installed\n")'
       - run:
           name: Install package dependencies (version in old MRAN snapshot is too outdated)
           # Have to also install dependencies since the MRAN versions are so old
           # that many of the packages added new dependencies.
           command: |
             Rscript -e 'install.packages(c("clipr", "git2r", "rprojroot", "rstudioapi", "shiny", "stringr", "testthat", "withr"), repos = "https://cran.rstudio.com/")'
-            Rscript -e 'if (requireNamespace("htmltools", quietly = TRUE)) packageVersion("htmltools") else cat("Not installed\n")'
       - run:
           name: Install rmarkdown 1.7 and knitr 1.18
           command: |
             Rscript -e 'install.packages(c("base64enc", "caTools"))'
-            Rscript -e 'if (requireNamespace("htmltools", quietly = TRUE)) packageVersion("htmltools") else cat("Not installed\n")'
             Rscript -e 'remotes::install_version("rmarkdown", "1.7", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
             Rscript -e 'remotes::install_version("knitr", "1.18", repos = "https://cran.rstudio.com/", dependencies = FALSE)'
       - run:
