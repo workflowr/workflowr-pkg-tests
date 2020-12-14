@@ -613,7 +613,10 @@ workflows:
     jobs:
       - speed
       - git_time
-      - r325
+      - devel
+      - pandoc_one
+      - rmd_1.7
+      - rmd_1.10
 #  hourly:
 #    triggers:
 #      - schedule:
