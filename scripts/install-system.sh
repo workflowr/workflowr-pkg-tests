@@ -6,7 +6,7 @@ set -eux
 apt-get update
 apt-get install -y \
   software-properties-common
-add-apt-repository ppa:cran/libgit2
+add-apt-repository --yes ppa:cran/libgit2
 
 apt-get update
 apt-get install -y \
