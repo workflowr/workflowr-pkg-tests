@@ -1,11 +1,16 @@
 #!/bin/bash
 set -eux
 
+# Install system dependencies with APT
+
+apt update
+
 # Use stretch-backports to install recent libgit2 version required by
 # gert
 # https://github.com/r-lib/gert/issues/112
 # https://packages.debian.org/stretch-backports/libgit2-dev
 # https://linuxconfig.org/how-to-install-and-use-debian-backports
+apt install -y lsb-release
 debian=`lsb_release --codename | cut -f2`
 if [ $debian == 'stretch' ]
 then
@@ -15,7 +20,6 @@ then
   apt install -y -t stretch-backports libgit2-dev
 fi
 
-apt-get update
 apt-get install -y \
   emacs \
   git \
