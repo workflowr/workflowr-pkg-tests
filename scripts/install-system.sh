@@ -25,6 +25,7 @@ apt-get install -y \
   git \
   libcurl4-openssl-dev \
   libgit2-dev \
+  libpng-dev \
   libsm6 \
   libssl-dev \
   libxml2-dev \
