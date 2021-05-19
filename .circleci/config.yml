@@ -613,8 +613,6 @@ workflows:
     jobs:
       - speed
       - git_time
-      - future
-      - r353
 #  hourly:
 #    triggers:
 #      - schedule:
