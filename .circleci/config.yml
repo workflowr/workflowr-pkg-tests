@@ -179,7 +179,7 @@ jobs:
             Rscript scripts/install-r-pkgs.R
       - run:
           name: Install package dependencies (version in old MRAN snapshot is too outdated)
-          command: Rscript -e 'install.packages(c("clipr", "git2r", "rappdirs", "reticulate"), repos = "https://cran.rstudio.com/", dependencies = FALSE)'
+          command: Rscript -e 'install.packages(c("clipr", "git2r", "png", "rappdirs", "reticulate"), repos = "https://cran.rstudio.com/", dependencies = FALSE)'
       - run:
           name: Session information and installed package versions
           command: Rscript scripts/session-info.R
@@ -614,6 +614,7 @@ workflows:
       - speed
       - git_time
       - future
+      - r353
 #  hourly:
 #    triggers:
 #      - schedule:
