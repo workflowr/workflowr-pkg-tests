@@ -228,15 +228,11 @@ jobs:
             # version available in MRAN snapshot.
             Rscript -e 'install.packages("digest")'
 
-            Rscript -e 'install.packages(c("callr", "fs", "glue", "reticulate"), repos = "https://cran.rstudio.com/")'
+            Rscript -e 'install.packages(c("callr", "fs", "glue", "reticulate", "rlang", "vctrs"), repos = "https://cran.rstudio.com/")'
 
             # Install spelling 2.1 to avoid error from tools::loadPkgRdMacros()
             # that is called in spelling 2.2.
             Rscript -e 'remotes::install_version("spelling", "2.1", repos = "https://cran.rstudio.com/")'
-            # rlang and vctrs dropped support for R 3.2 and don't exist in the
-            # MRAN snapshot from 2016, so have to install older version.
-            Rscript -e 'remotes::install_version("rlang", "0.4.8", repos = "https://cran.rstudio.com/")'
-            Rscript -e 'remotes::install_version("vctrs", "0.3.4", repos = "https://cran.rstudio.com/")'
       - run:
           name: Install package dependencies
           command: |
@@ -611,8 +607,8 @@ workflows:
   version: 2
   commit:
     jobs:
-      - speed
       - git_time
+      - r330
 #  hourly:
 #    triggers:
 #      - schedule:
