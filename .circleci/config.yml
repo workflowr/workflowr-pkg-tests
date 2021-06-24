@@ -617,7 +617,7 @@ workflows:
 #          filters:
 #            branches:
 #              only:
-#                - master
+#                - main
 #    jobs:
 #      - git_time
   weekly:
@@ -629,7 +629,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - future
       - devel
