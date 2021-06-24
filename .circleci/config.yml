@@ -608,7 +608,6 @@ workflows:
   commit:
     jobs:
       - git_time
-      - r330
 #  hourly:
 #    triggers:
 #      - schedule:
