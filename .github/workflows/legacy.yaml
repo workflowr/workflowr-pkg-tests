@@ -18,7 +18,11 @@ jobs:
           r-version: 3.3.3
       - uses: r-lib/actions/setup-pandoc@v1
         with:
-          pandoc-version: "1.19.2.4"
+          pandoc-version: "2.7.3"
+      - name: Check pandoc installation
+        run: |
+          pandoc --version
+          pandoc-citeproc --version
       - name: Install pak and query dependencies
         run: |
           install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")
@@ -48,10 +52,6 @@ jobs:
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
         shell: Rscript {0}
-      - name: Check pandoc installation
-        run: |
-          pandoc --version
-          pandoc-citeproc --version
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_: false
