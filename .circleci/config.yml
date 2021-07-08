@@ -488,9 +488,6 @@ jobs:
                           xorg-libsm \
                           xorg-libxt
       - run:
-          name: Unset CircleCI's forced conversion of HTTPS->SSH
-          command: git config --global --unset "url.ssh://git@github.com.insteadof"
-      - run:
           name: Clone workflowr
           command: git clone https://github.com/jdblischak/workflowr.git ../workflowr
       - run:
