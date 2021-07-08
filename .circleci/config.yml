@@ -460,9 +460,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Unset CircleCI's forced conversion of HTTPS->SSH
-          command: git config --global --unset "url.ssh://git@github.com.insteadof"
-      - run:
           name: Configure conda
           command: |
             conda config --set always_yes yes
@@ -473,7 +470,8 @@ jobs:
           name: Install
           command: |
             mamba update --all
-            mamba install matplotlib \
+            mamba install git \
+                          matplotlib \
                           qpdf \
                           r-base \
                           r-clipr \
@@ -489,6 +487,9 @@ jobs:
                           r-workflowr \
                           xorg-libsm \
                           xorg-libxt
+      - run:
+          name: Unset CircleCI's forced conversion of HTTPS->SSH
+          command: git config --global --unset "url.ssh://git@github.com.insteadof"
       - run:
           name: Clone workflowr
           command: git clone https://github.com/jdblischak/workflowr.git ../workflowr
