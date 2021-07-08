@@ -399,14 +399,11 @@ jobs:
             - "~/R/Library"
   callr_3.3.0:
     docker:
-      - image: continuumio/miniconda3:4.7.10
+      - image: condaforge/mambaforge:4.10.3-1
     environment:
       NOT_CRAN: true
     steps:
       - checkout
-      - run:
-          name: Unset CircleCI's forced conversion of HTTPS->SSH
-          command: git config --global --unset "url.ssh://git@github.com.insteadof"
       - run:
           name: Configure conda
           command: |
@@ -414,14 +411,13 @@ jobs:
             conda config --set quiet yes
             conda config --set changeps1 no
             conda config --set auto_update_conda no
-            conda config --add channels defaults
-            conda config --add channels conda-forge
       - run:
           name: Install
           command: |
-            conda update --all
+            mamba update --all
             conda config --env --add pinned_packages conda-forge::r-callr=3.3.0
-            conda install qpdf \
+            mamba install git \
+                          qpdf \
                           r-base \
                           r-callr==3.3.0 \
                           r-clipr \
@@ -604,7 +600,7 @@ workflows:
   commit:
     jobs:
       - git_time
-      - reticulate
+      - callr_3.3.0
 #  hourly:
 #    triggers:
 #      - schedule:
