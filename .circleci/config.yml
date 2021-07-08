@@ -469,7 +469,7 @@ jobs:
             conda config --set quiet yes
             conda config --set changeps1 no
             conda config --set auto_update_conda no
-            conda config --add channels defaults
+            conda config --set channel_priority strict
             conda config --add channels conda-forge
       - run:
           name: Install
@@ -608,6 +608,7 @@ workflows:
   commit:
     jobs:
       - git_time
+      - reticulate
 #  hourly:
 #    triggers:
 #      - schedule:
