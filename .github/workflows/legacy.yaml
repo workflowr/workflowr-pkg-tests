@@ -48,6 +48,10 @@ jobs:
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
         shell: Rscript {0}
+      - name: Check pandoc installation
+        run: |
+          pandoc --version
+          pandoc-citeproc --version
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_: false

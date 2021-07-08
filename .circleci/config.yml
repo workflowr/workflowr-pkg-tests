@@ -600,7 +600,6 @@ workflows:
   commit:
     jobs:
       - git_time
-      - callr_3.3.0
 #  hourly:
 #    triggers:
 #      - schedule:
