@@ -256,7 +256,7 @@ jobs:
       - run:
           name: Build and check
           command: bash scripts/check.sh
-          no_output_timeout: 20m
+          no_output_timeout: 30m
       - store_artifacts:
           path: /tmp/workflowr/workflowr.Rcheck/
       - save_cache:
@@ -600,6 +600,7 @@ workflows:
   commit:
     jobs:
       - git_time
+      - r330
 #  hourly:
 #    triggers:
 #      - schedule:
