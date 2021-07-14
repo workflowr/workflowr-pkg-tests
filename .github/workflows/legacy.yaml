@@ -52,14 +52,9 @@ jobs:
             !${{ env.R_LIBS_USER }}/pak
           key: ubuntu-18.04-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles('.github/r-depends.rds') }}
           restore-keys: ubuntu-18.04-${{ steps.install-r.outputs.installed-r-version }}-1-
-      - name: Install system dependencies
-        run: |
-          pak::pkg_system_requirements("rcmdcheck", execute = TRUE)
-        shell: Rscript {0}
       - name: Install dependencies
         run: |
           pak::local_install_dev_deps(upgrade = TRUE)
-          pak::pkg_install("rcmdcheck")
         shell: Rscript {0}
       - name: Session info
         run: |
@@ -71,12 +66,11 @@ jobs:
         env:
           _R_CHECK_CRAN_INCOMING_: false
         run: |
-          options(crayon.enabled = TRUE)
-          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
-        shell: Rscript {0}
+          R CMD build .
+          R CMD check --as-cran --no-examples --no-manual *tar.gz
       - name: Show testthat output
         if: always()
-        run: find check -name 'testthat.Rout*' -exec cat '{}' \; || true
+        run: find workflowr.Rcheck -name 'testthat.Rout*' -exec cat '{}' \; || true
         shell: bash
       - name: Upload check results
         if: failure()
