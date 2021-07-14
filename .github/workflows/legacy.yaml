@@ -28,6 +28,8 @@ jobs:
             netbase \
             pandoc \
             pandoc-citeproc \
+            python3 \
+            python3-matplotlib \
             qpdf \
             zlib1g-dev
       - uses: r-lib/actions/setup-r@v1
