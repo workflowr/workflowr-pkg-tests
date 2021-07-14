@@ -34,27 +34,19 @@ jobs:
         id: install-r
         with:
           r-version: 3.3.3
-      - name: Check system installation
-        run: |
-          Rscript --version
-          pandoc --version
-          pandoc-citeproc --version
-      - name: Install pak and query dependencies
-        run: |
-          install.packages("pak", repos = "https://r-lib.github.io/p/pak/dev/")
-          saveRDS(pak::pkg_deps("local::.", dependencies = TRUE), ".github/r-depends.rds")
-        shell: Rscript {0}
       - name: Restore R package cache
         uses: actions/cache@v2
         with:
-          path: |
-            ${{ env.R_LIBS_USER }}/*
-            !${{ env.R_LIBS_USER }}/pak
-          key: ubuntu-18.04-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles('.github/r-depends.rds') }}
+          path: ${{ env.R_LIBS_USER }}/*
+          key: ubuntu-18.04-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles('DESCRIPTION') }}
           restore-keys: ubuntu-18.04-${{ steps.install-r.outputs.installed-r-version }}-1-
       - name: Install dependencies
         run: |
-          pak::local_install_dev_deps(upgrade = TRUE)
+          print(getOption("repos"))
+          if (!requireNamespace("remotes", quietly = TRUE)) {
+            install.packages("remotes")
+          }
+          remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
       - name: Session info
         run: |
@@ -77,4 +69,4 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: legacy-results
-          path: check
+          path: workflowr.Rcheck
