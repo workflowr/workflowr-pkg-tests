@@ -14,10 +14,10 @@ jobs:
           repository: "jdblischak/workflowr"
       - name: Install system dependencies
         run: |
-          apt-get install -y software-properties-common
-          add-apt-repository -y ppa:cran/libgit2
-          apt-get update
-          apt-get install -y \
+          sudo apt-get install -y software-properties-common
+          sudo add-apt-repository -y ppa:cran/libgit2
+          sudo apt-get update
+          sudo apt-get install -y \
             libcurl4-openssl-dev \
             libgit2-dev \
             libpng-dev \
