@@ -9,12 +9,9 @@ This repository contains additional tests of the R package [workflowr][].
 
 Name  | Purpose
 ------------- | -------------
+[![legacy](https://github.com/workflowr/workflowr-pkg-tests/workflows/legacy/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/legacy.yaml) | Ubuntu 18.04, R 3.3.3, Pandoc 1.19.2.4
 future        | Catch future errors by installing development versions of dependencies
 devel         | Run tests with development version of R
-r363          | Run tests with R 3.6.3
-r353          | Run tests with R 3.5.3
-r330          | Run tests with minimum required version of R (3.3.0)
-pandoc_one    | Run tests with pandoc 1.19 (breaking changes introduced in pandoc 2+)
 rmd_1.7       | Run tests with min versions of rmarkdown 1.7 (first version that supports pandoc 2+) and knitr 1.18 (first version to export functions used by rmarkdown 1.10+)
 rmd_1.10      | Run tests with version of rmarkdown that [sets the pagetitle metadata when missing title][rmarkdown1355]
 reticulate    | Test `wflow_html()` warning for [Python plots created with reticulate version < 1.14.9000][workflowr181]

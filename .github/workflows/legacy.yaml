@@ -1,5 +1,7 @@
 name: legacy
 on:
+  schedule:
+    - cron: "0 09 * * 1"
   workflow_dispatch:
 jobs:
   legacy:
