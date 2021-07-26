@@ -9,7 +9,6 @@ This repository contains additional tests of the R package [workflowr][].
 
 Name  | Purpose
 ------------- | -------------
-[![legacy](https://github.com/workflowr/workflowr-pkg-tests/workflows/legacy/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/legacy.yaml) | Ubuntu 18.04, R 3.3.3, Pandoc 1.19.2.4
 future        | Catch future errors by installing development versions of dependencies
 devel         | Run tests with development version of R
 rmd_1.7       | Run tests with min versions of rmarkdown 1.7 (first version that supports pandoc 2+) and knitr 1.18 (first version to export functions used by rmarkdown 1.10+)
@@ -21,3 +20,8 @@ git_time      | Catch timezone conversion errors (e.g. [git2r #407][git2r407])
 [git2r407]: https://github.com/ropensci/git2r/issues/407
 [rmarkdown1355]: https://github.com/rstudio/rmarkdown/pull/1355
 [workflowr181]: https://github.com/jdblischak/workflowr/issues/181
+
+Name    | OS           | R       | pandoc   | knitr   | rmarkdown | status
+------- | ------------ | ------- | -------- | ------- | --------- | ------
+current | Ubuntu 20.04 | release | 2.7.3    | release | release   | [![current](https://github.com/workflowr/workflowr-pkg-tests/workflows/current/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/current.yaml)
+legacy  | Ubuntu 18.04 | 3.3.3   | 1.19.2.4 | 1.18    | 1.7       | [![legacy](https://github.com/workflowr/workflowr-pkg-tests/workflows/legacy/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/legacy.yaml)
