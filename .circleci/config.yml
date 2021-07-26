@@ -70,46 +70,6 @@ jobs:
           key: r-pkg-cache-v7-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
-  devel:
-    docker:
-      - image: rocker/r-ver:devel
-    environment:
-      NOT_CRAN: true
-      PANDOC: 2.7
-      R_LIBS: ~/R/Library
-    steps:
-      - restore_cache:
-          keys:
-            - r-pkg-cache-v7-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
-            - r-pkg-cache-v7-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
-      - checkout
-      - run:
-          name: Install system dependencies
-          command: bash scripts/install-system.sh
-      - run:
-          name: Install pandoc
-          command: bash scripts/install-pandoc.sh $PANDOC
-      - run:
-          name: Clone workflowr
-          command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr
-      - run:
-          name: Install package dependencies
-          command: |
-            mkdir -p ~/R/Library
-            Rscript scripts/install-r-pkgs.R
-      - run:
-          name: Session information and installed package versions
-          command: Rscript scripts/session-info.R
-      - run:
-          name: Build and check
-          command: bash scripts/check.sh
-          no_output_timeout: 20m
-      - store_artifacts:
-          path: /tmp/workflowr/workflowr.Rcheck/
-      - save_cache:
-          key: r-pkg-cache-v7-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
-          paths:
-            - "~/R/Library"
   rmd_1.10:
     docker:
       - image: rocker/r-base:latest
@@ -332,7 +292,6 @@ workflows:
                 - main
     jobs:
       - future
-      - devel
       - rmd_1.10
       - reticulate
       - speed
