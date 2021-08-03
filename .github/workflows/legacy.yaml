@@ -55,7 +55,7 @@ jobs:
       - name: Install minimum required versions of knitr and rmarkdown
         run: |
           library("remotes")
-          install_version("knitr", "1.18", upgrade = FALSE, repos = "https://cran.r-project.org")
+          install_version("knitr", "1.29", upgrade = FALSE, repos = "https://cran.r-project.org")
           install_version("caTools", "1.16", upgrade = FALSE, repos = "https://cran.r-project.org")
           install_version("rmarkdown", "1.7", upgrade = FALSE, repos = "https://cran.r-project.org")
         shell: Rscript {0}
