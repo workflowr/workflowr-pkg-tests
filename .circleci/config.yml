@@ -193,9 +193,10 @@ jobs:
 
 workflows:
   version: 2
-  commit:
-    jobs:
-      - speed
+  # commit:
+  #   jobs:
+  #     - reticulate
+  #     - speed
   weekly:
     triggers:
       - schedule:
@@ -208,5 +209,3 @@ workflows:
                 - main
     jobs:
       - future
-      - reticulate
-      - speed
