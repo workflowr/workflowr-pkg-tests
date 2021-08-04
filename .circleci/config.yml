@@ -235,51 +235,12 @@ jobs:
           key: r-pkg-cache-v7-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
-  git_time:
-    docker:
-      - image: rocker/r-base:latest
-    environment:
-      R_LIBS: ~/R/Library
-    steps:
-      - checkout
-      - run:
-          name: Install system dependencies
-          command: bash scripts/install-system.sh
-      - run:
-          name: Install R packages
-          command: |
-            mkdir -p ~/R/Library
-            Rscript -e 'install.packages(c("fs", "remotes"))'
-            Rscript -e 'remotes::install_github("ropensci/git2r")'
-      - run:
-          name: Configure R setup
-          command: |
-            echo TZ=America/New_York >> ~/.Renviron # set time zone
-            echo 'options(warn=2)' >> ~/.Rprofile # Treat warnings as errors
-      - run:
-          name: Record time and timezone
-          command: Rscript -e 'Sys.time(); Sys.timezone()'
-      - run:
-          name: Test conversion of git_time to date
-          command: Rscript scripts/test-git-time.R
 
 workflows:
   version: 2
   commit:
     jobs:
-      - git_time
-#  hourly:
-#    triggers:
-#      - schedule:
-#          # "At minute 0"
-#          # https://crontab.guru/#0_*_*_*_*
-#          cron: "0 * * * *"
-#          filters:
-#            branches:
-#              only:
-#                - main
-#    jobs:
-#      - git_time
+      - speed
   weekly:
     triggers:
       - schedule:
@@ -295,4 +256,3 @@ workflows:
       - rmd_1.10
       - reticulate
       - speed
-      - git_time

@@ -13,9 +13,7 @@ future        | Catch future errors by installing development versions of depend
 rmd_1.10      | Run tests with version of rmarkdown that [sets the pagetitle metadata when missing title][rmarkdown1355]
 reticulate    | Test `wflow_html()` warning for [Python plots created with reticulate version < 1.14.9000][workflowr181]
 speed         | Test speed of `wflow_publish()` for dev version compared to previous versions
-git_time      | Catch timezone conversion errors (e.g. [git2r #407][git2r407])
 
-[git2r407]: https://github.com/ropensci/git2r/issues/407
 [rmarkdown1355]: https://github.com/rstudio/rmarkdown/pull/1355
 [workflowr181]: https://github.com/jdblischak/workflowr/issues/181
 
