@@ -70,51 +70,6 @@ jobs:
           key: r-pkg-cache-v7-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
           paths:
             - "~/R/Library"
-  rmd_1.10:
-    docker:
-      - image: rocker/r-base:latest
-    environment:
-      NOT_CRAN: true
-      PANDOC: 2.7
-      R_LIBS: ~/R/Library
-    steps:
-      - restore_cache:
-          keys:
-            - r-pkg-cache-v7-latest-{{ arch }}-{{ .Branch }}
-            - r-pkg-cache-v7-latest-{{ arch }}-
-      - checkout
-      - run:
-          name: Install system dependencies
-          command: bash scripts/install-system.sh
-      - run:
-          name: Install pandoc
-          command: bash scripts/install-pandoc.sh $PANDOC
-      - run:
-          name: Clone workflowr
-          command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr
-      - run:
-          name: Install package dependencies
-          command: |
-            mkdir -p ~/R/Library
-            Rscript -e 'install.packages("stringi")'
-            Rscript scripts/install-r-pkgs.R
-      - run:
-          name: Install rmarkdown 1.10
-          command: |
-            Rscript -e 'remotes::install_version("rmarkdown", "1.10", upgrade = FALSE, repos = "https://cran.r-project.org")'
-      - run:
-          name: Session information and installed package versions
-          command: Rscript scripts/session-info.R
-      - run:
-          name: Build and check
-          command: bash scripts/check.sh
-          no_output_timeout: 20m
-      - store_artifacts:
-          path: /tmp/workflowr/workflowr.Rcheck/
-      - save_cache:
-          key: r-pkg-cache-v7-latest-{{ arch }}-{{ .Branch }}
-          paths:
-            - "~/R/Library"
   reticulate:
     docker:
       - image: condaforge/mambaforge:4.10.3-1
@@ -253,6 +208,5 @@ workflows:
                 - main
     jobs:
       - future
-      - rmd_1.10
       - reticulate
       - speed
