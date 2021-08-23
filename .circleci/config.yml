@@ -1,75 +1,5 @@
 version: 2
 jobs:
-  future:
-    docker:
-      - image: rocker/r-ver:devel
-    environment:
-      NOT_CRAN: true
-      PANDOC: 2.9.2.1
-      R_LIBS: ~/R/Library
-    steps:
-      - restore_cache:
-          keys:
-            - r-pkg-cache-v7-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
-            - r-pkg-cache-v7-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-
-      - checkout
-      - run:
-          name: Install system dependencies
-          command: bash scripts/install-system.sh
-      - run:
-          name: Install pandoc
-          command: bash scripts/install-pandoc.sh $PANDOC
-      - run:
-          name: Install package dependencies from GitHub
-          command: |
-            mkdir -p ~/R/Library
-            Rscript -e 'install.packages("remotes")'
-            Rscript -e 'remotes::install_github("r-lib/callr")'
-            Rscript -e 'remotes::install_github("mdlincoln/clipr")'
-            Rscript -e 'remotes::install_github("r-lib/covr")'
-            Rscript -e 'remotes::install_github("r-lib/devtools")'
-            Rscript -e 'remotes::install_github("r-lib/fs")'
-            Rscript -e 'remotes::install_github("wrathematics/getPass")'
-            Rscript -e 'remotes::install_github("ropensci/git2r")'
-            Rscript -e 'remotes::install_github("tidyverse/glue")'
-            Rscript -e 'remotes::install_github("r-lib/httr")'
-            Rscript -e 'remotes::install_github("yihui/knitr")'
-            Rscript -e 'remotes::install_github("rstudio/miniUI")'
-            Rscript -e 'remotes::install_github("rstudio/reticulate")'
-            Rscript -e 'remotes::install_github("rstudio/rmarkdown")'
-            Rscript -e 'remotes::install_github("krlmlr/rprojroot")'
-            Rscript -e 'remotes::install_github("rstudio/rstudioapi")'
-            Rscript -e 'remotes::install_github("rstudio/shiny")'
-            Rscript -e 'remotes::install_github("ropensci/spelling")'
-            Rscript -e 'remotes::install_github("tidyverse/stringr")'
-            Rscript -e 'remotes::install_github("r-lib/testthat")'
-            Rscript -e 'remotes::install_github("edwindj/whisker")'
-            Rscript -e 'remotes::install_github("r-lib/withr")'
-            Rscript -e 'remotes::install_github("viking/r-yaml")'
-      - run:
-          name: Clone and install workflowr
-          command: |
-            git clone https://github.com/jdblischak/workflowr.git ../workflowr
-            R CMD build --no-build-vignettes --no-manual ../workflowr
-            R CMD INSTALL workflowr_*tar.gz
-      - run:
-          name: Session information and installed package versions
-          command: |
-            Rscript -e 'library(workflowr); devtools::session_info()'
-            Rscript -e 'installed.packages()[, c("Package", "Version")]'
-            Rscript -e 'rmarkdown::pandoc_version()'
-      - run:
-          name: Build and check package
-          command: |
-            cd ../workflowr
-            bash scripts/build.sh --no-manual
-          no_output_timeout: 20m
-      - store_artifacts:
-          path: ../workflowr/workflowr.Rcheck/
-      - save_cache:
-          key: r-pkg-cache-v7-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ .Branch }}
-          paths:
-            - "~/R/Library"
   reticulate:
     docker:
       - image: condaforge/mambaforge:4.10.3-1
@@ -197,15 +127,16 @@ workflows:
   #   jobs:
   #     - reticulate
   #     - speed
-  weekly:
-    triggers:
-      - schedule:
-          # "At 09:00 on Monday."
-          # https://crontab.guru/#0_09_*_*_1
-          cron: "0 09 * * 1"
-          filters:
-            branches:
-              only:
-                - main
-    jobs:
-      - future
+  # weekly:
+  #   triggers:
+  #     - schedule:
+  #         # "At 09:00 on Monday."
+  #         # https://crontab.guru/#0_09_*_*_1
+  #         cron: "0 09 * * 1"
+  #         filters:
+  #           branches:
+  #             only:
+  #               - main
+  #   jobs:
+  #     - reticulate
+  #     - speed
