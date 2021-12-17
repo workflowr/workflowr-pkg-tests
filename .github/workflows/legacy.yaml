@@ -50,6 +50,7 @@ jobs:
           if (!requireNamespace("remotes", quietly = TRUE)) {
             install.packages("remotes")
           }
+          remotes::install_version("usethis", "2.0.1")
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
       - name: Install minimum required versions of knitr and rmarkdown
