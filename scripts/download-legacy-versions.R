@@ -37,6 +37,8 @@ depsSorted <- depsSorted[-length(depsSorted)]
 # the fact that it's installed in the system library). Not worth troubleshooting
 # since it's already installed
 depsSorted <- depsSorted[!depsSorted == "lattice"]
+# same situation with Matrix
+depsSorted <- depsSorted[!depsSorted == "Matrix"]
 
 # Get versions
 deps <- mran[depsSorted, c("Package", "Version")]
