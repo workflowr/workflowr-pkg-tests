@@ -47,10 +47,12 @@ colnames(deps) <- tolower(colnames(deps))
 
 # Update minimum versions as required for latest version of workflowr
 deps["callr", "version"] <- "3.7.0"
+deps["clipr", "version"] <- "0.7.0"
 deps["evaluate", "version"] <- "0.13"
 deps["fs", "version"] <- "1.2.7"
 deps["git2r", "version"] <- "0.26.0"
 deps["knitr", "version"] <- "1.29"
+deps["reticulate", "version"] <- "1.15"
 deps["rmarkdown", "version"] <- "1.18"
 deps["xfun", "version"] <- "0.15"
 deps["yaml", "version"] <- "2.1.19"
@@ -81,6 +83,20 @@ depsSorted <- c(
   depsSorted[1:(callrIndex-1)],
   c("ps", "processx"),
   depsSorted[callrIndex:length(depsSorted)]
+)
+
+# Install rappdirs before reticulate, a new depenency added between 1.7 and 1.15
+reticulateIndex <- which(deps$package == "reticulate")
+deps <- rbind(
+  deps[1:(reticulateIndex-1), ],
+  data.frame(package = "rappdirs", version = "0.3.1",
+             row.names = "rappdirs", stringsAsFactors = FALSE),
+  deps[reticulateIndex:nrow(deps), ]
+)
+depsSorted <- c(
+  depsSorted[1:(reticulateIndex-1)],
+  "rappdirs",
+  depsSorted[reticulateIndex:length(depsSorted)]
 )
 
 # Check current versions
