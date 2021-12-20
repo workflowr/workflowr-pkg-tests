@@ -2,7 +2,7 @@
 
 This repository contains additional tests of the R package [workflowr][].
 
-[workflowr]: https://github.com/jdblischak/workflowr
+[workflowr]: https://github.com/workflowr/workflowr
 
 The following tests are run every Monday:
 
@@ -27,4 +27,4 @@ Name  | Purpose
 reticulate    | Test `wflow_html()` warning for [Python plots created with reticulate version < 1.14.9000][workflowr181]
 speed         | Test speed of `wflow_publish()` for dev version compared to previous versions
 
-[workflowr181]: https://github.com/jdblischak/workflowr/issues/181
+[workflowr181]: https://github.com/workflowr/workflowr/issues/181

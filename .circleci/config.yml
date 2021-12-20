@@ -38,7 +38,7 @@ jobs:
                           xorg-libxt
       - run:
           name: Clone workflowr
-          command: git clone https://github.com/jdblischak/workflowr.git ../workflowr
+          command: git clone https://github.com/workflowr/workflowr.git ../workflowr
       - run:
           name: Build and install workflowr
           command: |
@@ -79,7 +79,7 @@ jobs:
           command: bash scripts/install-pandoc.sh $PANDOC
       - run:
           name: Clone workflowr
-          command: git clone https://github.com/jdblischak/workflowr.git /tmp/workflowr/
+          command: git clone https://github.com/workflowr/workflowr.git /tmp/workflowr/
       - run:
           name: Install package dependencies
           command: |

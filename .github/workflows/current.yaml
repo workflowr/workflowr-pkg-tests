@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: "jdblischak/workflowr"
+          repository: "workflowr/workflowr"
       - name: Install system dependencies
         run: |
           sudo apt-get install -y software-properties-common

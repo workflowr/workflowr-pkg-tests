@@ -17,7 +17,7 @@ jobs:
       - name: "Checkout workflowr"
         uses: actions/checkout@v2
         with:
-          repository: "jdblischak/workflowr"
+          repository: "workflowr/workflowr"
           path: "workflowr"
       - name: Install system dependencies
         run: |
