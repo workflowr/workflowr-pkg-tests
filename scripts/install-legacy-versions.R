@@ -10,10 +10,19 @@
 
 pkgs <- read.csv("data/legacy-package-versions.csv", stringsAsFactors = FALSE)
 
+isInstalled <- function(pkgName, pkgVersion) {
+  requireNamespace(pkgName, quietly = TRUE) &&
+    packageVersion(pkgName) == pkgVersion
+}
+
 for (i in seq_len(nrow(pkgs))) {
   pkg <- pkgs$package[i]
   pkgVersion <- pkgs$version[i]
   pkgStatus <- pkgs$status[i]
+  if (isInstalled(pkg, pkgVersion)) {
+    message("Already installed ", pkg, " ", pkgVersion)
+    next
+  }
   message("Installing ", pkg, " ", pkgVersion)
   if (pkgStatus == "archive") {
     tarball <- sprintf(
@@ -27,4 +36,7 @@ for (i in seq_len(nrow(pkgs))) {
     )
   }
   install.packages(tarball, repos = NULL, dependencies = FALSE)
+  if (!isInstalled(pkg, pkgVersion)) {
+    stop("Package ", pkg, " ", pkgVersion, " failed to install")
+  }
 }
