@@ -16,9 +16,9 @@ from GitHub
 
 Name    | OS           | R       | pandoc   | knitr   | rmarkdown | status
 ------- | ------------ | ------- | -------- | ------- | --------- | ------
-current | Ubuntu 20.04 | release | 2.7.3    | release | release   | [![current](https://github.com/workflowr/workflowr-pkg-tests/workflows/current/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/current.yaml)
+current | Ubuntu 20.04 | release | 2.11.4   | release | release   | [![current](https://github.com/workflowr/workflowr-pkg-tests/workflows/current/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/current.yaml)
 legacy  | Ubuntu 18.04 | 3.3.3   | 1.19.2.4 | 1.29    | 1.18      | [![legacy](https://github.com/workflowr/workflowr-pkg-tests/workflows/legacy/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/legacy.yaml)
-future  | Ubuntu 20.04 | devel   | 2.9.2.1  | devel   | devel     | [![future](https://github.com/workflowr/workflowr-pkg-tests/workflows/future/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/future.yaml)
+future  | Ubuntu 20.04 | devel   | 2.16.2   | devel   | devel     | [![future](https://github.com/workflowr/workflowr-pkg-tests/workflows/future/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/future.yaml)
 
 Other tests available:
 
