@@ -54,9 +54,8 @@ jobs:
         working-directory: "workflowr-pkg-tests"
       - name: Session info
         run: |
-          options(width = 100)
-          pkgs <- installed.packages()[, "Package"]
-          sessioninfo::session_info(pkgs, include_base = TRUE)
+          sessionInfo()
+          installed.packages()[, c("Package", "Version")]
         shell: Rscript {0}
       - name: Check
         env:
