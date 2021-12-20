@@ -33,6 +33,11 @@ depsSorted <- as_ids(depsSorted)
 # remove workflowr
 depsSorted <- depsSorted[-length(depsSorted)]
 
+# remove lattice. It's causing issues (may be the dash in its version number or
+# the fact that it's installed in the system library). Not worth troubleshooting
+# since it's already installed
+depsSorted <- depsSorted[!depsSorted == "lattice"]
+
 # Get versions
 deps <- mran[depsSorted, c("Package", "Version")]
 deps <- as.data.frame(deps, stringsAsFactors = FALSE)

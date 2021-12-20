@@ -14,7 +14,6 @@ sourcetools,0.1.7,current
 Rcpp,0.12.16,archive
 BH,1.66.0-1,archive
 rlang,0.2.0,archive
-lattice,0.20-35,archive
 highr,0.6,archive
 yaml,2.1.19,archive
 glue,1.2.0,archive
