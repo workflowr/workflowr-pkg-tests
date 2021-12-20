@@ -47,6 +47,7 @@ colnames(deps) <- tolower(colnames(deps))
 
 # Update minimum versions as required for latest version of workflowr
 deps["callr", "version"] <- "3.7.0"
+deps["cli", "version"] <- "1.1.0"
 deps["clipr", "version"] <- "0.7.0"
 deps["evaluate", "version"] <- "0.13"
 deps["fs", "version"] <- "1.2.7"
