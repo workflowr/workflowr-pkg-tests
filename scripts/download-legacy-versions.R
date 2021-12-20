@@ -46,7 +46,10 @@ deps <- as.data.frame(deps, stringsAsFactors = FALSE)
 colnames(deps) <- tolower(colnames(deps))
 
 # Update minimum versions as required for latest version of workflowr
+deps["callr", "version"] <- "3.7.0"
 deps["evaluate", "version"] <- "0.13"
+deps["fs", "version"] <- "1.2.7"
+deps["git2r", "version"] <- "0.26.0"
 deps["knitr", "version"] <- "1.29"
 deps["rmarkdown", "version"] <- "1.18"
 deps["xfun", "version"] <- "0.15"
