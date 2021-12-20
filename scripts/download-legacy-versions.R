@@ -69,6 +69,20 @@ depsSorted <- c(
   depsSorted[(xfunIndex+1):length(depsSorted)]
 )
 
+# Install ps and processx before callr
+callrIndex <- which(deps$package == "callr")
+deps <- rbind(
+  deps[1:(callrIndex-1), ],
+  data.frame(package = c("ps", "processx"), version = c("1.2.0", "3.5.0"),
+             row.names = c("ps", "processx"), stringsAsFactors = FALSE),
+  deps[callrIndex:nrow(deps), ]
+)
+depsSorted <- c(
+  depsSorted[1:(callrIndex-1)],
+  c("ps", "processx"),
+  depsSorted[callrIndex:length(depsSorted)]
+)
+
 # Check current versions
 current <- available.packages()
 current <- current[depsSorted, c("Package", "Version")]
