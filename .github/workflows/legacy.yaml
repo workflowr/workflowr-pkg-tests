@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-18.04
     name: legacy
     env:
-      RSPM: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -45,14 +44,7 @@ jobs:
           key: ubuntu-18.04-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles('DESCRIPTION') }}
           restore-keys: ubuntu-18.04-${{ steps.install-r.outputs.installed-r-version }}-1-
       - name: Install dependencies
-        run: |
-          print(getOption("repos"))
-          if (!requireNamespace("remotes", quietly = TRUE)) {
-            install.packages("remotes")
-          }
-          remotes::install_version("usethis", "2.0.1")
-          remotes::install_deps(dependencies = TRUE)
-        shell: Rscript {0}
+        run: Rscript scripts/install-legacy-versions.R
       - name: Install minimum required versions of knitr and rmarkdown
         run: |
           library("remotes")
