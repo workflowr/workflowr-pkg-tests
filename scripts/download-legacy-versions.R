@@ -38,6 +38,27 @@ deps <- mran[depsSorted, c("Package", "Version")]
 deps <- as.data.frame(deps, stringsAsFactors = FALSE)
 colnames(deps) <- tolower(colnames(deps))
 
+# Update minimum versions as required for latest version of workflowr
+deps["evaluate", "version"] <- "0.13"
+deps["knitr", "version"] <- "1.29"
+deps["rmarkdown", "version"] <- "1.18"
+deps["xfun", "version"] <- "0.15"
+deps["yaml", "version"] <- "2.1.19"
+
+# Install tinytex after xfun, it's only dependency
+xfunIndex <- which(deps$package == "xfun")
+deps <- rbind(
+  deps[1:xfunIndex, ],
+  data.frame(package = "tinytex", version = "0.11",
+             row.names = "tinytex", stringsAsFactors = FALSE),
+  deps[(xfunIndex+1):nrow(deps), ]
+)
+depsSorted <- c(
+  depsSorted[1:xfunIndex],
+  "tinytex",
+  depsSorted[(xfunIndex+1):length(depsSorted)]
+)
+
 # Check current versions
 current <- available.packages()
 current <- current[depsSorted, c("Package", "Version")]
