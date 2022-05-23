@@ -19,6 +19,8 @@ mran <- available.packages(contrib.url(mranUrl, "source"))
 imports <- mran["workflowr", "Imports"]
 mran["workflowr", "Imports"] <- paste0(imports, ", fs, httpuv, httr, xfun")
 suggests <- mran["workflowr", "Suggests"]
+# replace devtools with sessioninfo
+suggests <- sub("devtools", "sessioninfo", suggests)
 mran["workflowr", "Suggests"] <- paste0(suggests,
                                              ", clipr, miniUI, reticulate, shiny, spelling")
 
