@@ -6,8 +6,10 @@
 output <- "data/legacy-package-versions.csv"
 snapshot <- "2018-05-01"
 
-library(igraph)
-library(miniCRAN)
+suppressPackageStartupMessages({
+  library(igraph)
+  library(miniCRAN)
+})
 
 # Download available package versions from MRAN snapshot
 # https://mran.microsoft.com/timemachine

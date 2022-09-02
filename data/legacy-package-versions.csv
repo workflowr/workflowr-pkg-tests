@@ -55,7 +55,7 @@ evaluate,0.13,archive
 R.utils,2.6.0,archive
 ps,1.2.0,archive
 processx,3.5.0,archive
-callr,3.7.0,current
+callr,3.7.0,archive
 httpuv,1.4.1,archive
 knitr,1.29,archive
 shiny,1.0.5,archive
