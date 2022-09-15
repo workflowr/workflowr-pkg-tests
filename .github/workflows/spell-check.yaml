@@ -1,0 +1,47 @@
+name: spell-check
+on:
+  schedule: # quarterly
+    - cron: "0 09 * */3 1"
+  workflow_dispatch:
+jobs:
+  current:
+    runs-on: ubuntu-22.04
+    name: spell-check
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: "workflowr/workflowr"
+      - name: Setup r2u
+        run: |
+          apt-get update
+          apt-get install --yes --no-install-recommends wget ca-certificates
+          wget -q -O- https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc \
+            | tee -a /etc/apt/trusted.gpg.d/cranapt_key.asc
+          echo "deb [arch=amd64] https://dirk.eddelbuettel.com/cranapt jammy main" \
+            > /etc/apt/sources.list.d/cranapt.list
+          apt-get update
+          wget -q -O- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc \
+            | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+          echo "deb [arch=amd64] https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/" \
+            > /etc/apt/sources.list.d/cran_r.list
+          echo "Package: *" > /etc/apt/preferences.d/99cranapt
+          echo "Pin: release o=CRAN-Apt Project" >> /etc/apt/preferences.d/99cranapt
+          echo "Pin: release l=CRAN-Apt Packages" >> /etc/apt/preferences.d/99cranapt
+          echo "Pin-Priority: 700"  >> /etc/apt/preferences.d/99cranapt
+        shell: sudo bash {0}
+      - name: Install dependencies
+        run: |
+          apt-get install --yes \
+            r-cran-spelling
+        shell: sudo bash {0}
+      - name: Spell check
+        run: |
+          library("spelling")
+          typos <- spell_check_package()
+          if (nrow(typos)) {
+            print(typos)
+            stop("")
+          } else {
+            message("No typos detected!!")
+          }
+        shell: Rscript {0}

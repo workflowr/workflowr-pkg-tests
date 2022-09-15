@@ -4,6 +4,8 @@ This repository contains additional tests of the R package [workflowr][].
 
 [workflowr]: https://github.com/workflowr/workflowr
 
+## Weekly
+
 The following tests are run every Monday:
 
 * **current:** A current setup using the release versions
@@ -19,6 +21,18 @@ Name    | OS           | R       | pandoc   | knitr   | rmarkdown | status
 current | Ubuntu 20.04 | release | 2.11.4   | release | release   | [![current](https://github.com/workflowr/workflowr-pkg-tests/workflows/current/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/current.yaml)
 legacy  | Ubuntu 18.04 | 3.3.3   | 1.19.2.4 | 1.29    | 1.18      | [![legacy](https://github.com/workflowr/workflowr-pkg-tests/workflows/legacy/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/legacy.yaml)
 future  | Ubuntu 20.04 | devel   | 2.16.2   | devel   | devel     | [![future](https://github.com/workflowr/workflowr-pkg-tests/workflows/future/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/future.yaml)
+
+## Quarterly
+
+The following tests are run (at least) quarterly:
+
+* **spell-check:** Checks spelling with `spelling::spell_check_package()`
+
+Name        | status
+----------- | -------
+spell-check | [![spell-check](https://github.com/workflowr/workflowr-pkg-tests/workflows/spell-check/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/spell-check.yaml)
+
+## Miscellaneous
 
 Other tests available:
 
