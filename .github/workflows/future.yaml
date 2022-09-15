@@ -68,7 +68,6 @@ jobs:
           install_github("rstudio/rstudioapi")
           install_github("r-lib/sessioninfo")
           install_github("rstudio/shiny")
-          install_github("ropensci/spelling")
           install_github("tidyverse/stringr")
           install_github("r-lib/testthat")
           install_github("edwindj/whisker")

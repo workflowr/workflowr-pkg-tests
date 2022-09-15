@@ -24,7 +24,7 @@ suggests <- mran["workflowr", "Suggests"]
 # replace devtools with sessioninfo
 suggests <- sub("devtools", "sessioninfo", suggests)
 mran["workflowr", "Suggests"] <- paste0(suggests,
-                                             ", clipr, miniUI, reticulate, shiny, spelling")
+                                        ", clipr, miniUI, reticulate, shiny")
 
 # Sort topologically
 depsGraph <- makeDepGraph(
@@ -56,11 +56,9 @@ deps["clipr", "version"] <- "0.7.0"
 deps["evaluate", "version"] <- "0.13"
 deps["fs", "version"] <- "1.2.7"
 deps["git2r", "version"] <- "0.26.0"
-deps["hunspell", "version"] <- "3.0"
 deps["knitr", "version"] <- "1.29"
 deps["reticulate", "version"] <- "1.15"
 deps["rmarkdown", "version"] <- "1.18"
-deps["spelling", "version"] <- "2.0"
 deps["xfun", "version"] <- "0.15"
 deps["yaml", "version"] <- "2.1.19"
 

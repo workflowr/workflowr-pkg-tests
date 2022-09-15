@@ -30,7 +30,6 @@ jobs:
                           r-recommended \
                           r-reticulate \
                           r-shiny \
-                          r-spelling \
                           r-testthat \
                           r-withr \
                           r-workflowr \
