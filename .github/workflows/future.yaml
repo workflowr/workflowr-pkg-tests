@@ -54,7 +54,6 @@ jobs:
           library("remotes")
           install_github("r-lib/callr")
           install_github("mdlincoln/clipr")
-          install_github("r-lib/covr")
           install_github("r-lib/fs")
           install_github("wrathematics/getPass")
           install_github("ropensci/git2r")

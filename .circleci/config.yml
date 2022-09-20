@@ -24,7 +24,6 @@ jobs:
                           qpdf \
                           r-base \
                           r-clipr \
-                          r-covr \
                           r-devtools \
                           r-miniui \
                           r-recommended \

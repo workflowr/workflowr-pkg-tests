@@ -25,6 +25,8 @@ suggests <- mran["workflowr", "Suggests"]
 suggests <- sub("devtools", "sessioninfo", suggests)
 mran["workflowr", "Suggests"] <- paste0(suggests,
                                         ", clipr, miniUI, reticulate, shiny")
+# Remove covr
+mran["workflowr", "Suggests"] <- sub("covr,\\s", "", mran["workflowr", "Suggests"])
 
 # Sort topologically
 depsGraph <- makeDepGraph(
