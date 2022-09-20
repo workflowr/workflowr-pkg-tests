@@ -26,10 +26,14 @@ future  | Ubuntu 20.04 | devel   | 2.16.2   | devel   | devel     | [![future](h
 
 The following tests are run (at least) quarterly:
 
+* **pandocless:** Runs `R CMD check --as-cran` in an environment without pandoc.
+  Confirms that all tests that requires pandoc are properly skipped when it is
+  unavailable (because some CRAN test machines don't have pandoc installed)
 * **spell-check:** Checks spelling with `spelling::spell_check_package()`
 
 Name        | status
 ----------- | -------
+pandocless | [![pandocless](https://github.com/workflowr/workflowr-pkg-tests/workflows/pandocless/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/pandocless.yaml)
 spell-check | [![spell-check](https://github.com/workflowr/workflowr-pkg-tests/workflows/spell-check/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/spell-check.yaml)
 
 ## Miscellaneous

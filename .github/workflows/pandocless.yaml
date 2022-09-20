@@ -1,0 +1,72 @@
+name: pandocless
+on:
+  schedule: # quarterly
+    - cron: "0 09 * */3 1"
+  workflow_dispatch:
+jobs:
+  current:
+    runs-on: ubuntu-22.04
+    name: pandocless
+    env:
+      _R_CHECK_CRAN_INCOMING_: TRUE
+      _R_CHECK_CRAN_INCOMING_REMOTE_: FALSE
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: "workflowr/workflowr"
+      - name: Setup r2u
+        run: |
+          apt-get update
+          apt-get install --yes --no-install-recommends wget ca-certificates
+          wget -q -O- https://eddelbuettel.github.io/r2u/assets/dirk_eddelbuettel_key.asc \
+            | tee -a /etc/apt/trusted.gpg.d/cranapt_key.asc
+          echo "deb [arch=amd64] https://dirk.eddelbuettel.com/cranapt jammy main" \
+            > /etc/apt/sources.list.d/cranapt.list
+          apt-get update
+          wget -q -O- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc \
+            | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+          echo "deb [arch=amd64] https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/" \
+            > /etc/apt/sources.list.d/cran_r.list
+          echo "Package: *" > /etc/apt/preferences.d/99cranapt
+          echo "Pin: release o=CRAN-Apt Project" >> /etc/apt/preferences.d/99cranapt
+          echo "Pin: release l=CRAN-Apt Packages" >> /etc/apt/preferences.d/99cranapt
+          echo "Pin-Priority: 700"  >> /etc/apt/preferences.d/99cranapt
+        shell: sudo bash {0}
+      - name: Install dependencies
+        run: |
+          apt-get install --yes \
+            r-cran-callr \
+            r-cran-fs \
+            r-cran-getpass \
+            r-cran-git2r \
+            r-cran-glue \
+            r-cran-httpuv \
+            r-cran-httr \
+            r-cran-knitr \
+            r-cran-rmarkdown \
+            r-cran-rprojroot \
+            r-cran-rstudioapi \
+            r-cran-stringr \
+            r-cran-whisker \
+            r-cran-xfun \
+            r-cran-yaml \
+            r-cran-clipr \
+            r-cran-miniui \
+            r-cran-reticulate \
+            r-cran-sessioninfo \
+            r-cran-shiny \
+            r-cran-testthat \
+            r-cran-withr
+        shell: sudo bash {0}
+      - name: Session information
+        run: sessionInfo()
+        shell: Rscript {0}
+      - name: Confirm pandocless
+        run: |
+           if (rmarkdown::pandoc_available())
+             stop("pandoc is available")
+        shell: Rscript {0}
+      - name: Build
+        run: R CMD build --no-build-vignettes --no-manual .
+      - name: Check
+        run: R CMD check --ignore-vignettes --no-manual --as-cran workflowr_*.tar.gz
