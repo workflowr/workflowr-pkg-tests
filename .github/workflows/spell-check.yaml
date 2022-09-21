@@ -4,7 +4,7 @@ on:
     - cron: "0 09 * */3 1"
   workflow_dispatch:
 jobs:
-  current:
+  spell-check:
     runs-on: ubuntu-22.04
     name: spell-check
     steps:
