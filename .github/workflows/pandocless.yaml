@@ -57,7 +57,9 @@ jobs:
             r-cran-sessioninfo \
             r-cran-shiny \
             r-cran-testthat \
-            r-cran-withr
+            r-cran-withr \
+            r-cran-codetools
+            dpkg-query --list r-*
         shell: sudo bash {0}
       - name: Session information
         run: sessionInfo()
@@ -71,3 +73,6 @@ jobs:
         run: R CMD build --no-build-vignettes --no-manual .
       - name: Check
         run: R CMD check --ignore-vignettes --no-manual --as-cran workflowr_*.tar.gz
+      - name: Test results
+        if: always()
+        run: cat workflowr.Rcheck/tests/testthat.Rout*
