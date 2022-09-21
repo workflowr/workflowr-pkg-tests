@@ -8,7 +8,8 @@ jobs:
     runs-on: ubuntu-22.04
     name: pandocless
     env:
-      NOT_CRAN: TRUE
+      # This job is designed to simulate a CRAN environment with no pandoc installed
+      NOT_CRAN: FALSE
       _R_CHECK_CRAN_INCOMING_: TRUE
       _R_CHECK_CRAN_INCOMING_REMOTE_: FALSE
     steps:
@@ -57,8 +58,7 @@ jobs:
             r-cran-sessioninfo \
             r-cran-shiny \
             r-cran-testthat \
-            r-cran-withr \
-            r-cran-codetools
+            r-cran-withr
             dpkg-query --list r-*
         shell: sudo bash {0}
       - name: Session information
