@@ -1,0 +1,42 @@
+name: update-conda-lockfiles
+on:
+  schedule: # quarterly
+    - cron: "0 09 * */3 1"
+  push:
+    paths:
+      - 'conda/environment.yaml'
+  workflow_dispatch:
+jobs:
+  lock:
+    runs-on: ${{ matrix.config.os }}
+    name: lock-${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: macOS-11, slug: 'macos', shell: 'bash -l {0}'}
+          - {os: ubuntu-20.04, slug: 'linux', shell: 'bash -l {0}'}
+          - {os: windows-latest, slug: 'win', shell: 'cmd /C CALL {0}'}
+    defaults:
+      run:
+        shell: ${{ matrix.config.shell }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Mambaforge
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+            miniforge-variant: Mambaforge
+            miniforge-version: latest
+            use-mamba: true
+            environment-file: conda/environment.yaml
+            activate-environment: wflow-env
+      - name: Export lockfile
+        run: conda list --explicit --md5 > conda/environment-${{ matrix.config.slug }}.lock
+      - name: Commit lockfile
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "runneradmin@github.com"
+          git pull origin main
+          git add conda/environment-${{ matrix.config.slug }}.lock
+          git commit --allow-empty -m "Update lockfile for ${{ matrix.config.slug }}"
+          git push origin main

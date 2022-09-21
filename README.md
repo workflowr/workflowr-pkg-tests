@@ -22,6 +22,18 @@ current | Ubuntu 20.04 | release | 2.11.4   | release | release   | [![current](
 legacy  | Ubuntu 18.04 | 3.3.3   | 1.19.2.4 | 1.29    | 1.18      | [![legacy](https://github.com/workflowr/workflowr-pkg-tests/workflows/legacy/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/legacy.yaml)
 future  | Ubuntu 20.04 | devel   | 2.16.2   | devel   | devel     | [![future](https://github.com/workflowr/workflowr-pkg-tests/workflows/future/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/future.yaml)
 
+## Monthly
+
+The following tests are run (at least) monthly:
+
+* **cross-platform:** Runs `R CMD check --as-cran` with `NOT_CRAN: TRUE` on
+  Linux, macOS, and Windows. Uses the conda environments in `conda/`
+
+Name        | status
+----------- | -------
+cross-platform | [![cross-platform](https://github.com/workflowr/workflowr-pkg-tests/workflows/cross-platform/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/cross-platform.yaml)
+
+
 ## Quarterly
 
 The following tests are run (at least) quarterly:
@@ -30,11 +42,14 @@ The following tests are run (at least) quarterly:
   Confirms that all tests that requires pandoc are properly skipped when it is
   unavailable (because some CRAN test machines don't have pandoc installed)
 * **spell-check:** Checks spelling with `spelling::spell_check_package()`
+* **update-conda-lockfiles:** Updates the conda lockfiles in `conda/` to use the
+  latest package versions available. These are used by the job `cross-platform`
 
 Name        | status
 ----------- | -------
 pandocless | [![pandocless](https://github.com/workflowr/workflowr-pkg-tests/workflows/pandocless/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/pandocless.yaml)
 spell-check | [![spell-check](https://github.com/workflowr/workflowr-pkg-tests/workflows/spell-check/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/spell-check.yaml)
+update-conda-lockfiles | [![update-conda-lockfiles](https://github.com/workflowr/workflowr-pkg-tests/workflows/update-conda-lockfiles/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/update-conda-lockfiles.yaml)
 
 ## Miscellaneous
 

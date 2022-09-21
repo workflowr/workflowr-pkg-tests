@@ -1,0 +1,56 @@
+name: cross-platform
+on:
+  schedule: # monthly
+    - cron: "0 09 1 * *"
+  push:
+    paths:
+      - 'conda/environment-win.lock'
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash -l {0}
+jobs:
+  build:
+    runs-on: ${{ matrix.config.os }}
+    name: test-${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: macOS-11, slug: 'macos'}
+          - {os: ubuntu-22.04, slug: 'linux'}
+          - {os: windows-2022, slug: 'win'}
+    env:
+      lockfile: workflowr-pkg-tests/conda/environment-${{ matrix.config.slug }}.lock
+      NOT_CRAN: TRUE
+      _R_CHECK_CRAN_INCOMING_: TRUE
+      _R_CHECK_CRAN_INCOMING_REMOTE_: FALSE
+      TZ: UTC
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: workflowr-pkg-tests
+      - uses: actions/checkout@v2
+        with:
+          repository: workflowr/workflowr
+          path: workflowr
+      - name: Install Conda environment from conda/environment.yaml
+        uses: mamba-org/provision-with-micromamba@main
+        with:
+          environment-file: ${{ env.lockfile }}
+          environment-name: wflow-env
+          cache-env: true
+          cache-env-key: ${{ runner.os }}-${{ hashFiles(env.lockfile) }}-0
+      - name: Install qpdf
+        # conda pkg not available for Windows
+        if: runner.os != 'Windows'
+        run: micromamba install conda-forge::qpdf
+      - name: Session information
+        run: Rscript -e "sessionInfo()"
+      - name: Build
+        run: R CMD build --no-manual workflowr/
+      - name: Check
+        run: R CMD check --no-manual --as-cran workflowr_*.tar.gz
+      - name: Test results
+        if: always()
+        run: cat workflowr.Rcheck/tests/testthat.Rout*
