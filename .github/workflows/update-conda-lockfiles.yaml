@@ -7,7 +7,7 @@ on:
       - 'conda/environment.yaml'
   workflow_dispatch:
 permissions:
-  contents: read|write
+  contents: write
 jobs:
   lock:
     runs-on: ${{ matrix.config.os }}
