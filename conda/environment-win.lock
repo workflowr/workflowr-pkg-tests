@@ -3,7 +3,7 @@
 # platform: win-64
 @EXPLICIT
 https://conda.anaconda.org/conda-forge/noarch/_r-mutex-1.0.1-anacondar_1.tar.bz2#19f9db5f4f1b7f5ef5f6d67207f25f38
-https://conda.anaconda.org/conda-forge/win-64/ca-certificates-2022.9.14-h5b45459_0.tar.bz2#5351971f1f88d9dbeb24b1a71985a036
+https://conda.anaconda.org/conda-forge/win-64/ca-certificates-2022.9.24-h5b45459_0.tar.bz2#5fba0abc60bf327a4bc4188cd64678be
 https://conda.anaconda.org/conda-forge/win-64/intel-openmp-2022.1.0-h57928b3_3787.tar.bz2#35dff2b6e944ce136a574c4c006cec28
 https://conda.anaconda.org/conda-forge/win-64/msys2-conda-epoch-20160418-1.tar.bz2#b0309b72560df66f71a9d5e34a5efdfa
 https://conda.anaconda.org/conda-forge/win-64/pandoc-2.19.2-h57928b3_0.tar.bz2#2385413bf7afd2614c504568eaac3b5e
@@ -19,16 +19,15 @@ https://conda.anaconda.org/conda-forge/win-64/vs2015_runtime-14.29.30139-h890b9b
 https://conda.anaconda.org/conda-forge/win-64/m2w64-gcc-libs-core-5.3.0-7.tar.bz2#4289d80fb4d272f1f3b56cfe87ac90bd
 https://conda.anaconda.org/conda-forge/win-64/m2w64-mpfr-3.1.4-4.tar.bz2#c06ce7a4ec998764e3e3c38f9985bceb
 https://conda.anaconda.org/conda-forge/win-64/vc-14.2-hb210afc_7.tar.bz2#079ed576a6c8f0c9b0bbaca0b786daa3
-https://conda.anaconda.org/conda-forge/win-64/libiconv-1.16-he774522_0.tar.bz2#bdfeadc9348e4d9fbe4821e81bf8f221
 https://conda.anaconda.org/conda-forge/win-64/libzlib-1.2.12-hcfcfb64_3.tar.bz2#8c64696cba59093d5c330c017979ec98
 https://conda.anaconda.org/conda-forge/win-64/m2w64-gcc-libgfortran-5.3.0-6.tar.bz2#066552ac6b907ec6d72c0ddab29050dc
 https://conda.anaconda.org/conda-forge/win-64/openssl-3.0.5-hcfcfb64_2.tar.bz2#24aa3e21e456372c88ac443bf6c77859
-https://conda.anaconda.org/conda-forge/win-64/pthreads-win32-2.9.1-hfa6e2cd_3.tar.bz2#e2da8758d7d51ff6aa78a14dfb9dbed4
+https://conda.anaconda.org/conda-forge/win-64/tbb-2021.6.0-h91493d7_0.tar.bz2#d77a85d975cd7bc00e8514771320e7e2
 https://conda.anaconda.org/conda-forge/win-64/libssh2-1.10.0-h9a1e1f7_3.tar.bz2#c2b344e960a173c777bb3ed172c38cd8
-https://conda.anaconda.org/conda-forge/win-64/libxml2-2.9.14-hf5bbc77_4.tar.bz2#36313fe1cca6560e2c06e5ad3c86e342
 https://conda.anaconda.org/conda-forge/win-64/m2w64-gcc-libs-5.3.0-7.tar.bz2#fe759119b8b3bfa720b8762c6fdc35de
+https://conda.anaconda.org/conda-forge/win-64/mkl-2022.1.0-h6a75c08_874.tar.bz2#2ff89a7337a9636029b4db9466e9f8e3
 https://conda.anaconda.org/conda-forge/win-64/zlib-1.2.12-hcfcfb64_3.tar.bz2#ed1d293a0f0d1e0b9030f41050e76a2f
-https://conda.anaconda.org/conda-forge/win-64/libhwloc-2.8.0-h039e092_1.tar.bz2#e84839b06cdd039130a1d1aa875146d3
+https://conda.anaconda.org/conda-forge/win-64/libblas-3.9.0-16_win64_mkl.tar.bz2#d2e6f4e86cee2b4e8c27ff6884ccdc61
 https://conda.anaconda.org/conda-forge/win-64/m2w64-bzip2-1.0.6-6.tar.bz2#3ab4872b978c1c0bd97a925374966348
 https://conda.anaconda.org/conda-forge/win-64/m2w64-fftw-3.3.4-6.tar.bz2#22b70744e9ca1fb4cf9cc28e31c2fcc9
 https://conda.anaconda.org/conda-forge/win-64/m2w64-flac-1.3.1-3.tar.bz2#3a4cb4df0fbf3a71f0aa638945557609
@@ -37,20 +36,17 @@ https://conda.anaconda.org/conda-forge/win-64/m2w64-icu-58.2-2.tar.bz2#ff7ca2825
 https://conda.anaconda.org/conda-forge/win-64/m2w64-libjpeg-turbo-1.4.2-3.tar.bz2#c13e6bdf596a6418f1347d8f472739cb
 https://conda.anaconda.org/conda-forge/win-64/m2w64-libvorbis-1.3.5-2.tar.bz2#f746dd6b436cabacaf7ef546d252f7e1
 https://conda.anaconda.org/conda-forge/win-64/m2w64-speexdsp-1.2rc3-3.tar.bz2#5850c91ec7511b27b00d3cd6cc09f0b5
+https://conda.anaconda.org/conda-forge/win-64/liblapack-3.9.0-16_win64_mkl.tar.bz2#be2f9d5712a5bb05cd900005ee752a05
 https://conda.anaconda.org/conda-forge/win-64/m2w64-speex-1.2rc2-3.tar.bz2#f5827079b7562dfe40f67f8813fa2bff
 https://conda.anaconda.org/conda-forge/win-64/m2w64-xz-5.2.2-2.tar.bz2#a5663c8daada7806ed83a77cf2ff6f4f
 https://conda.anaconda.org/conda-forge/win-64/m2w64-zlib-1.2.8-10.tar.bz2#12b579f376a3215bebab449647d1203f
-https://conda.anaconda.org/conda-forge/win-64/tbb-2021.5.0-h91493d7_3.tar.bz2#63b8372aa83477f1027f0a996449ff07
 https://conda.anaconda.org/conda-forge/win-64/m2w64-libpng-1.6.21-2.tar.bz2#97699ca33d38feb86c7105080e191bb1
 https://conda.anaconda.org/conda-forge/win-64/m2w64-libsndfile-1.0.26-2.tar.bz2#081579f2a370699f70f2f1bcad5f8176
 https://conda.anaconda.org/conda-forge/win-64/m2w64-libtiff-4.0.6-2.tar.bz2#669112ae52759168b8af135c40318f31
 https://conda.anaconda.org/conda-forge/win-64/m2w64-libxml2-2.9.3-3.tar.bz2#3341b55d46e2347cf832e3c734e0e693
 https://conda.anaconda.org/conda-forge/win-64/m2w64-pcre2-10.34-0.tar.bz2#f6ca05c091543bd4c526a2598fbf2467
 https://conda.anaconda.org/conda-forge/win-64/m2w64-tcl-8.6.5-3.tar.bz2#0b1ac1d18d5c347f1c155065be099776
-https://conda.anaconda.org/conda-forge/win-64/mkl-2022.1.0-h6a75c08_874.tar.bz2#2ff89a7337a9636029b4db9466e9f8e3
-https://conda.anaconda.org/conda-forge/win-64/libblas-3.9.0-16_win64_mkl.tar.bz2#d2e6f4e86cee2b4e8c27ff6884ccdc61
 https://conda.anaconda.org/conda-forge/win-64/m2w64-tk-8.6.5-3.tar.bz2#c2d85c85caf655893ea11b92c395b3b6
-https://conda.anaconda.org/conda-forge/win-64/liblapack-3.9.0-16_win64_mkl.tar.bz2#be2f9d5712a5bb05cd900005ee752a05
 https://conda.anaconda.org/conda-forge/win-64/m2w64-bwidget-1.9.10-2.tar.bz2#a7a80ba7117dfb47f0ae148292e1f536
 https://conda.anaconda.org/conda-forge/win-64/m2w64-tktable-2.10-5.tar.bz2#35f1284fc2839897b248f1a751b842e6
 https://conda.anaconda.org/conda-forge/win-64/r-base-4.1.3-hddad469_1.tar.bz2#b038f35b2c87af76040e78cd0bb51921
@@ -60,7 +56,7 @@ https://conda.anaconda.org/conda-forge/win-64/r-brio-1.1.3-r41h6d2157b_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/r-clipr-0.8.0-r41hc72bb7e_0.tar.bz2#f69ab5f64faf5db5ed65ba159363c0c1
 https://conda.anaconda.org/conda-forge/noarch/r-codetools-0.2_18-r41hc72bb7e_0.tar.bz2#75bcb5a3087ce83b46137aa732d3ed00
 https://conda.anaconda.org/conda-forge/win-64/r-commonmark-1.8.0-r41h6d2157b_0.tar.bz2#866ae7f0c8f7cb08c9af559121682a4c
-https://conda.anaconda.org/conda-forge/noarch/r-crayon-1.5.1-r41hc72bb7e_0.tar.bz2#ac6c74e4a346d5aab9d8eac94b32bf62
+https://conda.anaconda.org/conda-forge/noarch/r-crayon-1.5.2-r41hc72bb7e_0.tar.bz2#fe72704114af651d5af96d2947f2c3ad
 https://conda.anaconda.org/conda-forge/win-64/r-curl-4.3.2-r41h6d2157b_0.tar.bz2#22ade5d04ab50c59da97fab46830b775
 https://conda.anaconda.org/conda-forge/win-64/r-digest-0.6.29-r41ha856d6a_0.tar.bz2#dd498f6e73bb50f247cbf398bde90fcf
 https://conda.anaconda.org/conda-forge/noarch/r-evaluate-0.16-r41hc72bb7e_0.tar.bz2#4e6d48071b7aee6d8f4e82b72f082fc6
@@ -69,7 +65,7 @@ https://conda.anaconda.org/conda-forge/win-64/r-fastmap-1.1.0-r41ha856d6a_0.tar.
 https://conda.anaconda.org/conda-forge/win-64/r-fs-1.5.2-r41ha856d6a_1.tar.bz2#8fe770bb1e556a892443eac04fea0945
 https://conda.anaconda.org/conda-forge/win-64/r-git2r-0.30.1-r41h007cf7e_0.tar.bz2#b95b32381d966ce7f50e0f8a9818eea2
 https://conda.anaconda.org/conda-forge/win-64/r-glue-1.6.2-r41h6d2157b_0.tar.bz2#7a9c13302d69cbc14f2315a11aa61201
-https://conda.anaconda.org/conda-forge/win-64/r-jsonlite-1.8.0-r41h6d2157b_0.tar.bz2#a0492097b572cc21fff9287dbea405c3
+https://conda.anaconda.org/conda-forge/win-64/r-jsonlite-1.8.2-r41h6d2157b_0.tar.bz2#029bf3bbcbec9ad213bd26d37c4dc4b7
 https://conda.anaconda.org/conda-forge/win-64/r-lattice-0.20_45-r41h6d2157b_0.tar.bz2#29333dae860ed45825553e5659f2bf19
 https://conda.anaconda.org/conda-forge/win-64/r-magrittr-2.0.3-r41h6d2157b_0.tar.bz2#13e84dca50a9fc79640c10c950c0b621
 https://conda.anaconda.org/conda-forge/win-64/r-mime-0.12-r41h6d2157b_0.tar.bz2#d63680cb41ff588452bd7c5979a4b1c0
@@ -80,7 +76,7 @@ https://conda.anaconda.org/conda-forge/win-64/r-ps-1.7.1-r41h6d2157b_0.tar.bz2#d
 https://conda.anaconda.org/conda-forge/noarch/r-r6-2.5.1-r41hc72bb7e_0.tar.bz2#a560798c2d5ab0dbb30feddc6b8e63fb
 https://conda.anaconda.org/conda-forge/win-64/r-rappdirs-0.3.3-r41h6d2157b_0.tar.bz2#c6083db741a11901d98836cfca923298
 https://conda.anaconda.org/conda-forge/win-64/r-rcpp-1.0.9-r41ha856d6a_1.tar.bz2#30e9b77db313076634adffd530eceae0
-https://conda.anaconda.org/conda-forge/win-64/r-rlang-1.0.5-r41ha856d6a_0.tar.bz2#93a2b8bc969d690e7ff8c274ca5a8977
+https://conda.anaconda.org/conda-forge/win-64/r-rlang-1.0.6-r41ha856d6a_0.tar.bz2#fd50431d53a90a0435aab55ae234dd24
 https://conda.anaconda.org/conda-forge/noarch/r-rstudioapi-0.14-r41hc72bb7e_0.tar.bz2#0b800d61f97fa9360e2d342492b4189b
 https://conda.anaconda.org/conda-forge/win-64/r-sourcetools-0.1.7-r41ha856d6a_1002.tar.bz2#a2874a12ef897e08bd075425cb91d6e1
 https://conda.anaconda.org/conda-forge/win-64/r-stringi-1.7.8-r41ha856d6a_0.tar.bz2#39fe5f9af6af9063e7e9f6f7088f8676
@@ -93,7 +89,7 @@ https://conda.anaconda.org/conda-forge/noarch/r-xtable-1.8_4-r41hc72bb7e_3.tar.b
 https://conda.anaconda.org/conda-forge/win-64/r-yaml-2.3.5-r41h6d2157b_0.tar.bz2#73113e03c98ea999755f8ba2bbb34ad9
 https://conda.anaconda.org/conda-forge/win-64/r-askpass-1.1-r41h6d2157b_2.tar.bz2#f66873f678dea42a134ed371067095ea
 https://conda.anaconda.org/conda-forge/win-64/r-cachem-1.0.6-r41h6d2157b_0.tar.bz2#449841223701d4287be512f020317c79
-https://conda.anaconda.org/conda-forge/win-64/r-cli-3.4.0-r41ha856d6a_0.tar.bz2#2eab7a0896506d0ab07594dc0c9119d6
+https://conda.anaconda.org/conda-forge/win-64/r-cli-3.4.1-r41ha856d6a_0.tar.bz2#b23f30c4f857ab119f9e642ccbaea4d9
 https://conda.anaconda.org/conda-forge/win-64/r-diffobj-0.3.5-r41h6d2157b_0.tar.bz2#b33133cc5cd5d0b1637734f4cfb58389
 https://conda.anaconda.org/conda-forge/win-64/r-ellipsis-0.3.2-r41h6d2157b_0.tar.bz2#ad83de32a91d0f8df23c4379c1874651
 https://conda.anaconda.org/conda-forge/win-64/r-getpass-0.2_2-r41h6d2157b_1004.tar.bz2#912f83ef39d6bad1ff41592c9f38d7b9
@@ -106,7 +102,7 @@ https://conda.anaconda.org/conda-forge/win-64/r-processx-3.7.0-r41h6d2157b_0.tar
 https://conda.anaconda.org/conda-forge/win-64/r-rcpptoml-0.1.7-r41ha856d6a_1.tar.bz2#162e5b2e79950689561c60ade6f0009a
 https://conda.anaconda.org/conda-forge/noarch/r-rprojroot-2.0.3-r41hc72bb7e_0.tar.bz2#4c97577b6f80853234f34b548d8140ec
 https://conda.anaconda.org/conda-forge/noarch/r-stringr-1.4.1-r41hc72bb7e_0.tar.bz2#99dba4f2796cd3d2d59ca79d2e0c7da4
-https://conda.anaconda.org/conda-forge/noarch/r-tinytex-0.41-r41hc72bb7e_0.tar.bz2#12cc5fdd284fef4121c3951828cf79e5
+https://conda.anaconda.org/conda-forge/noarch/r-tinytex-0.42-r41hc72bb7e_0.tar.bz2#161e97c634943e09a697f757caf7fd0f
 https://conda.anaconda.org/conda-forge/noarch/r-callr-3.7.2-r41hc72bb7e_0.tar.bz2#0493d6ed1666106a66d218c0eb44d475
 https://conda.anaconda.org/conda-forge/noarch/r-desc-1.4.2-r41hc72bb7e_0.tar.bz2#b63a8a0a0fa2fd16a324d50b4df98238
 https://conda.anaconda.org/conda-forge/noarch/r-fontawesome-0.3.0-r41hc72bb7e_0.tar.bz2#3196e2515416291b544200b047c8aca0
@@ -118,7 +114,7 @@ https://conda.anaconda.org/conda-forge/win-64/r-openssl-2.0.3-r41h81a3cea_0.tar.
 https://conda.anaconda.org/conda-forge/win-64/r-promises-1.2.0.1-r41ha856d6a_0.tar.bz2#7edf753a1743b79a753a256b81826db8
 https://conda.anaconda.org/conda-forge/win-64/r-sass-0.4.2-r41ha856d6a_0.tar.bz2#d9bbc8c00d946fc85ec5a0540bebca9d
 https://conda.anaconda.org/conda-forge/noarch/r-sessioninfo-1.2.2-r41hc72bb7e_0.tar.bz2#3d4bf418b268d3792ac0bd44960bb89f
-https://conda.anaconda.org/conda-forge/win-64/r-vctrs-0.4.1-r41ha856d6a_0.tar.bz2#5b93b5c10ccdb63d06f1d81ead90f3a0
+https://conda.anaconda.org/conda-forge/win-64/r-vctrs-0.4.2-r41ha856d6a_0.tar.bz2#8db34cc399de84b169cd3165c27c4143
 https://conda.anaconda.org/conda-forge/noarch/r-bslib-0.4.0-r41hc72bb7e_0.tar.bz2#7bcc433012d8c6c18358c3c13771c631
 https://conda.anaconda.org/conda-forge/win-64/r-httpuv-1.6.6-r41ha856d6a_0.tar.bz2#b5a32a65dbe1a6debe3b032d2960b97f
 https://conda.anaconda.org/conda-forge/noarch/r-httr-1.4.4-r41hc72bb7e_0.tar.bz2#0f25e3d569e80378216435d8f324c1f5
