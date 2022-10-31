@@ -5,10 +5,10 @@ on:
   workflow_dispatch:
 jobs:
   future:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     name: future
     env:
-      RSPM: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"
+      RSPM: "https://packagemanager.rstudio.com/cran/__linux__/jammy/latest"
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
