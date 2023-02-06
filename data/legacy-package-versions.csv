@@ -6,7 +6,7 @@ jsonlite,1.5,archive
 xtable,1.8-2,archive
 digest,0.6.15,archive
 R6,2.2.2,archive
-sourcetools,0.1.7,current
+sourcetools,0.1.7,archive
 Rcpp,0.12.16,archive
 BH,1.66.0-1,archive
 rlang,0.2.0,archive
