@@ -8,7 +8,7 @@ dependencies:
   # Imports:
   - r-callr >= 3.7.0
   - r-fs >= 1.2.7
-  - r-getPass
+  - r-getpass
   - r-git2r >= 0.26.0
   - r-glue
   - r-httpuv >= 1.2.2
@@ -23,7 +23,7 @@ dependencies:
   - r-yaml
   # Suggests:
   - r-clipr >= 0.7.0
-  - r-miniUI >= 0.1.1
+  - r-miniui >= 0.1.1
   - r-reticulate >= 1.15
   - r-sessioninfo
   - r-shiny >= 0.14
