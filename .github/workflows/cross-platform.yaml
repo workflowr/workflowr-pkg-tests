@@ -37,12 +37,12 @@ jobs:
           repository: workflowr/workflowr
           path: workflowr
       - name: Install Conda environment from conda/environment.yaml
-        uses: mamba-org/provision-with-micromamba@main
+        uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: ${{ env.lockfile }}
           environment-name: wflow-env
-          cache-env: true
-          cache-env-key: ${{ runner.os }}-${{ hashFiles(env.lockfile) }}-0
+          cache-environment: true
+          cache-environment-key: ${{ runner.os }}-${{ hashFiles(env.lockfile) }}-0
       - name: Install qpdf
         # conda pkg not available for Windows
         if: runner.os != 'Windows'
