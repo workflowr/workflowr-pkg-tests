@@ -4,7 +4,7 @@
 # defined in .github/workflows/legacy.yaml
 
 output <- "data/legacy-package-versions.csv"
-snapshot <- "2018-05-01"
+snapshot <- "2018-05-03"
 
 suppressPackageStartupMessages({
   library(igraph)
@@ -13,7 +13,7 @@ suppressPackageStartupMessages({
 
 # Download available package versions from MRAN snapshot
 # https://mran.microsoft.com/timemachine
-mranUrl <- sprintf("https://cran.microsoft.com/snapshot/%s/", snapshot)
+mranUrl <- sprintf("https://packagemanager.posit.co/cran/%s", snapshot)
 
 mran <- available.packages(contrib.url(mranUrl, "source"))
 

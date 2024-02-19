@@ -17,7 +17,7 @@ yaml,2.1.19,archive
 backports,1.1.2,archive
 R.methodsS3,1.7.1,archive
 glue,1.2.0,archive
-stringi,1.1.7,archive
+stringi,1.2.2,archive
 curl,3.2,archive
 openssl,1.0.1,archive
 base64enc,0.1-3,current
