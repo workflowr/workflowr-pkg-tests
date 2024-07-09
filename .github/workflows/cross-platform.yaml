@@ -28,11 +28,11 @@ jobs:
       TZ: UTC
     steps:
       - name: Checkout workflowr-pkg-tests
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: workflowr-pkg-tests
       - name: Checkout workflowr
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: workflowr/workflowr
           path: workflowr

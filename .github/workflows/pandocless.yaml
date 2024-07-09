@@ -13,7 +13,7 @@ jobs:
       _R_CHECK_CRAN_INCOMING_: TRUE
       _R_CHECK_CRAN_INCOMING_REMOTE_: FALSE
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: "workflowr/workflowr"
       - name: Setup r2u

@@ -11,7 +11,7 @@ jobs:
       RSPM: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: "workflowr/workflowr"
       - name: Install system dependencies
@@ -40,7 +40,7 @@ jobs:
         with:
           r-version: "release"
       - name: Restore R package cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ env.R_LIBS_USER }}/*
           key: ubuntu-20.04-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles('DESCRIPTION') }}
@@ -71,7 +71,7 @@ jobs:
         shell: bash
       - name: Upload check results
         if: failure()
-        uses: actions/upload-artifact@main
+        uses: actions/upload-artifact@v4
         with:
           name: current-results
           path: workflowr.Rcheck

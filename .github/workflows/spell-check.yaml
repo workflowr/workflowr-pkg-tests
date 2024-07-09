@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-22.04
     name: spell-check
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: "workflowr/workflowr"
       - name: Setup r2u
