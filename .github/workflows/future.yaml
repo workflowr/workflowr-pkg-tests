@@ -5,10 +5,10 @@ on:
   workflow_dispatch:
 jobs:
   future:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     name: future
     env:
-      RSPM: "https://packagemanager.rstudio.com/cran/__linux__/jammy/latest"
+      RSPM: "https://packagemanager.rstudio.com/cran/__linux__/noble/latest"
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
@@ -31,6 +31,7 @@ jobs:
             python3-matplotlib \
             qpdf \
             zlib1g-dev
+          apt list
       - uses: r-lib/actions/setup-pandoc@v2
         with:
           pandoc-version: "2.19.2"
@@ -42,8 +43,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ env.R_LIBS_USER }}/*
-          key: ubuntu-22.04-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles('DESCRIPTION') }}
-          restore-keys: ubuntu-22.04-${{ steps.install-r.outputs.installed-r-version }}-1-
+          key: ubuntu-24.04-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles('DESCRIPTION') }}
+          restore-keys: ubuntu-24.04-${{ steps.install-r.outputs.installed-r-version }}-1-
       - name: Install dependencies
         run: |
           print(getOption("repos"))
