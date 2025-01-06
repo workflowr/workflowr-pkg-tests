@@ -37,7 +37,7 @@ jobs:
           repository: workflowr/workflowr
           path: workflowr
       - name: Install Conda environment from conda/environment.yaml
-        uses: mamba-org/setup-micromamba@v1
+        uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: ${{ env.lockfile }}
           environment-name: wflow-env
