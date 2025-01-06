@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: macos-12, slug: 'macos', shell: 'bash -l {0}'}
+          - {os: macos-13, slug: 'macos', shell: 'bash -l {0}'}
           - {os: ubuntu-22.04, slug: 'linux', shell: 'bash -l {0}'}
           - {os: windows-2022, slug: 'win', shell: 'cmd /C CALL {0}'}
     defaults:
