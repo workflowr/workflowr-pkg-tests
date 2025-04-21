@@ -4,34 +4,34 @@
 # defined in .github/workflows/legacy.yaml
 
 output <- "data/legacy-package-versions.csv"
-snapshot <- "2018-05-03"
+snapshot <- "2021-07-02"
 
 suppressPackageStartupMessages({
   library(igraph)
   library(miniCRAN)
 })
 
-# Download available package versions from MRAN snapshot
-# https://mran.microsoft.com/timemachine
-mranUrl <- sprintf("https://packagemanager.posit.co/cran/%s", snapshot)
+# Download available package versions from Posit Package Manager snapshot
+# https://packagemanager.posit.co/cran/
+ppmUrl <- sprintf("https://packagemanager.posit.co/cran/%s", snapshot)
 
-mran <- available.packages(contrib.url(mranUrl, "source"))
+ppm <- available.packages(contrib.url(ppmUrl, "source"))
 
 # Add more recent dependencies
-imports <- mran["workflowr", "Imports"]
-mran["workflowr", "Imports"] <- paste0(imports, ", fs, httpuv, httr, xfun")
-suggests <- mran["workflowr", "Suggests"]
+imports <- ppm["workflowr", "Imports"]
+ppm["workflowr", "Imports"] <- paste0(imports, ", fs, httpuv, httr, xfun")
+suggests <- ppm["workflowr", "Suggests"]
 # replace devtools with sessioninfo
 suggests <- sub("devtools", "sessioninfo", suggests)
-mran["workflowr", "Suggests"] <- paste0(suggests,
+ppm["workflowr", "Suggests"] <- paste0(suggests,
                                         ", clipr, miniUI, reticulate, shiny")
 # Remove covr
-mran["workflowr", "Suggests"] <- sub("covr,\\s", "", mran["workflowr", "Suggests"])
+ppm["workflowr", "Suggests"] <- sub("covr,\\s", "", ppm["workflowr", "Suggests"])
 
 # Sort topologically
 depsGraph <- makeDepGraph(
   pkg = "workflowr",
-  availPkgs = mran
+  availPkgs = ppm
 )
 depsSorted <- topo_sort(depsGraph)
 depsSorted <- as_ids(depsSorted)
@@ -47,7 +47,7 @@ depsSorted <- depsSorted[!depsSorted == "lattice"]
 depsSorted <- depsSorted[!depsSorted == "Matrix"]
 
 # Get versions
-deps <- mran[depsSorted, c("Package", "Version")]
+deps <- ppm[depsSorted, c("Package", "Version")]
 deps <- as.data.frame(deps, stringsAsFactors = FALSE)
 colnames(deps) <- tolower(colnames(deps))
 
@@ -62,7 +62,6 @@ deps["knitr", "version"] <- "1.29"
 deps["later", "version"] <- "0.7.4"
 deps["reticulate", "version"] <- "1.15"
 deps["rmarkdown", "version"] <- "1.18"
-deps["testthat", "version"] <- "3.0.4"
 deps["xfun", "version"] <- "0.15"
 deps["yaml", "version"] <- "2.1.19"
 
