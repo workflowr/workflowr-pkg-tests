@@ -62,6 +62,7 @@ deps["knitr", "version"] <- "1.29"
 deps["later", "version"] <- "0.7.4"
 deps["reticulate", "version"] <- "1.15"
 deps["rmarkdown", "version"] <- "1.18"
+deps["testthat", "version"] <- "3.0.4"
 deps["xfun", "version"] <- "0.15"
 deps["yaml", "version"] <- "2.1.19"
 
