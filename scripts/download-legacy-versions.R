@@ -45,6 +45,8 @@ depsSorted <- depsSorted[-length(depsSorted)]
 depsSorted <- depsSorted[!depsSorted == "lattice"]
 # same situation with Matrix
 depsSorted <- depsSorted[!depsSorted == "Matrix"]
+# remove tinytex. Specific version installed below
+depsSorted <- depsSorted[!depsSorted == "tinytex"]
 
 # Get versions
 deps <- ppm[depsSorted, c("Package", "Version")]
