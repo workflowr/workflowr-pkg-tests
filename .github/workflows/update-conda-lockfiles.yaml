@@ -32,7 +32,10 @@ jobs:
             activate-environment: wflow-env
       - name: Export lockfile
         run: conda list --explicit --md5 > conda/environment-${{ matrix.config.slug }}.lock
+      - name: Diff lockfile
+        run: git diff
       - name: Commit lockfile
+        if: github.ref == 'refs/heads/main' && github.repository == 'workflowr/workflowr-pkg-tests'
         run: |
           git config --local user.name "GitHub Actions"
           git config --local user.email "runneradmin@github.com"
