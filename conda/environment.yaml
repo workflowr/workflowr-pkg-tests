@@ -33,3 +33,4 @@ dependencies:
   - pandoc >= 1.14, < 3
   # Extras
   - r-codetools
+  - r-rcpp < 1.0.14
