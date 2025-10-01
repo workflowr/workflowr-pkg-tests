@@ -45,7 +45,18 @@ jobs:
             r-cran-shiny \
             r-cran-testthat \
             r-cran-withr
-            dpkg-query --list r-*
+          dpkg-query --list r-*
+        shell: sudo bash {0}
+      # r-cran-rmarkdown now depends on pandoc. In general I think this is a
+      # good practice for a package manager (we also add pandoc to the run
+      # requirements of the r-rmarkdown conda-forge package for the same
+      # reason). But in order to confirm `R CMD check` can run without pandoc, I
+      # need to remove it.
+      - name: Install {rmarkdown} without pandoc
+        run: |
+          apt-get remove --yes pandoc || true
+          apt-get install --yes r-cran-remotes
+          Rscript -e 'remotes::install_github("rstudio/rmarkdown@*release", dependencies = FALSE)'
         shell: sudo bash {0}
       - name: Session information
         run: sessionInfo()
