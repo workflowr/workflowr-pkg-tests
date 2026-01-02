@@ -17,8 +17,8 @@ jobs:
       matrix:
         config:
           - {os: macos-15-intel, slug: 'macos', shell: 'bash -l {0}'}
-          - {os: ubuntu-22.04, slug: 'linux', shell: 'bash -l {0}'}
-          - {os: windows-2022, slug: 'win', shell: 'cmd /C CALL {0}'}
+          - {os: ubuntu-24.04, slug: 'linux', shell: 'bash -l {0}'}
+          - {os: windows-2025, slug: 'win', shell: 'cmd /C CALL {0}'}
     defaults:
       run:
         shell: ${{ matrix.config.shell }}

@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 jobs:
   current:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     name: current
     env:
       RSPM: "https://packagemanager.rstudio.com/cran/__linux__/jammy/latest"
@@ -43,8 +43,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ env.R_LIBS_USER }}/*
-          key: ubuntu-22.04-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles('DESCRIPTION') }}
-          restore-keys: ubuntu-22.04-${{ steps.install-r.outputs.installed-r-version }}-1-
+          key: ubuntu-24.04-${{ steps.install-r.outputs.installed-r-version }}-1-${{ hashFiles('DESCRIPTION') }}
+          restore-keys: ubuntu-24.04-${{ steps.install-r.outputs.installed-r-version }}-1-
       - name: Install dependencies
         run: |
           print(getOption("repos"))

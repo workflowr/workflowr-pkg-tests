@@ -18,8 +18,8 @@ jobs:
       matrix:
         config:
           - {os: macos-15-intel, slug: 'macos'}
-          - {os: ubuntu-22.04, slug: 'linux'}
-          - {os: windows-2022, slug: 'win'}
+          - {os: ubuntu-24.04, slug: 'linux'}
+          - {os: windows-2025, slug: 'win'}
     env:
       lockfile: workflowr-pkg-tests/conda/environment-${{ matrix.config.slug }}.lock
       NOT_CRAN: TRUE

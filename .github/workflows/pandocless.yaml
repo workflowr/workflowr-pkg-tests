@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 jobs:
   pandocless:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     name: pandocless
     env:
       # This job is designed to simulate a CRAN environment with no pandoc installed

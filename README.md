@@ -18,7 +18,7 @@ from GitHub
 
 Name    | OS           | R       | pandoc   | knitr   | rmarkdown | status
 ------- | ------------ | ------- | -------- | ------- | --------- | ------
-current | Ubuntu 22.04 | release | 2.16.2   | release | release   | [![current](https://github.com/workflowr/workflowr-pkg-tests/workflows/current/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/current.yaml)
+current | Ubuntu 24.04 | release | 2.16.2   | release | release   | [![current](https://github.com/workflowr/workflowr-pkg-tests/workflows/current/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/current.yaml)
 legacy  | Ubuntu 22.04 | 3.3.3   | 2.9.2.1  | 1.29    | 1.18      | [![legacy](https://github.com/workflowr/workflowr-pkg-tests/workflows/legacy/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/legacy.yaml)
 future  | Ubuntu 24.04 | devel   | 2.19.2   | devel   | devel     | [![future](https://github.com/workflowr/workflowr-pkg-tests/workflows/future/badge.svg)](https://github.com/workflowr/workflowr-pkg-tests/actions/workflows/future.yaml)
 
