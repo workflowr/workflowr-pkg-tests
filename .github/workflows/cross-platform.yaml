@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: macos-13, slug: 'macos'}
+          - {os: macos-15-intel, slug: 'macos'}
           - {os: ubuntu-22.04, slug: 'linux'}
           - {os: windows-2022, slug: 'win'}
     env:
