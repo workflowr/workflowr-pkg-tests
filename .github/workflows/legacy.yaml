@@ -11,11 +11,11 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: "Checkout workflowr-pkg-tests"
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: "workflowr-pkg-tests"
       - name: "Checkout workflowr"
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: "workflowr/workflowr"
           path: "workflowr"
