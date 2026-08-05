@@ -24,6 +24,7 @@ jobs:
             libpng-dev \
             libsm6 \
             libssl-dev \
+            libuv1-dev \
             libxml2-dev \
             libxt6 \
             netbase \
