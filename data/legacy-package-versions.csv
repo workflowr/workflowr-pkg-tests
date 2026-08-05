@@ -2,7 +2,7 @@ package,version,status
 glue,1.4.2,archive
 mime,0.11,archive
 jsonlite,1.7.2,archive
-xtable,1.8-4,current
+xtable,1.8-4,archive
 digest,0.6.27,archive
 R6,2.5.0,archive
 sourcetools,0.1.7,archive
@@ -38,7 +38,7 @@ whisker,0.4,archive
 clipr,0.7.0,archive
 cli,2.4.0,archive
 diffobj,0.3.4,archive
-ellipsis,0.3.2,current
+ellipsis,0.3.2,archive
 lifecycle,1.0.0,archive
 cachem,1.0.5,archive
 htmltools,0.5.1.1,archive
